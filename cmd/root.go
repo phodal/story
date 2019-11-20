@@ -44,6 +44,7 @@ var (
 				stories := ListStory()
 
 				table := tablewriter.NewWriter(os.Stdout)
+				table.SetRowLine(true)
 				table.SetHeader([]string{"Id", "Title", "Date", "Status", "Author"})
 
 				for _, v := range stories {

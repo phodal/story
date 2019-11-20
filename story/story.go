@@ -112,6 +112,9 @@ func ChangeStoryStatus(id string, status string) {
 	}
 
 	story.Status = status
+	if status == "done" {
+		story.EndDate = time.Now()
+	}
 
 	err = driver.Write("stories", id, &story)
 	if err != nil {
