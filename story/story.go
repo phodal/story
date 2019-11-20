@@ -6,6 +6,7 @@ import (
 	"github.com/teris-io/shortid"
 	"log"
 	"os"
+	"strings"
 	"text/template"
 	"time"
 )
@@ -72,7 +73,8 @@ func CreateStory(content string) {
 	story := &StoryModel{u1, content, "", "", "", *date, "", "", "", ""}
 
 	t, _ := template.New("story").Parse(storyTemplate)
-	file, err := os.Create("stories/docs/" + u1 + ".md")
+	fileName := u1 + "-" + updateFileName(content)
+	file, err := os.Create("stories/docs/" + fileName + ".md")
 	if err != nil {
 		log.Println("create file: ", err)
 		return
@@ -88,6 +90,10 @@ func CreateStory(content string) {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func updateFileName(name string) string {
+	return strings.ReplaceAll(name, " ", "")
 }
 
 func buildStoryId() string {
