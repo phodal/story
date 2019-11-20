@@ -3,7 +3,7 @@ package story
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/google/uuid"
+	"github.com/teris-io/shortid"
 	"log"
 	"os"
 	"text/template"
@@ -60,7 +60,7 @@ func ListStory() []StoryModel {
 }
 
 func CreateStory(content string) {
-	u1 := uuid.Must(uuid.NewUUID()).String()
+	u1 := buildStoryId()
 
 	date := &StoryDate{time.Now(), time.Now()}
 	story := &StoryModel{u1, content, "", "", "", *date, "", "", "", ""}
@@ -84,6 +84,37 @@ func CreateStory(content string) {
 	}
 }
 
-func PickStory(id string) {
-	fmt.Println(id)
+func buildStoryId() string {
+	str, _ := shortid.Generate()
+	return str
+}
+
+func PickStory(id string, userName string) {
+	var story StoryModel
+	err := driver.Read("stories", id, &story)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	story.Author = userName
+
+	err = driver.Write("stories", id, &story)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func ChangeStoryStatus(id string, status string) {
+	var story StoryModel
+	err := driver.Read("stories", id, &story)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	story.Status = status
+
+	err = driver.Write("stories", id, &story)
+	if err != nil {
+		log.Fatal(err)
+	}
 }

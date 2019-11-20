@@ -27,7 +27,7 @@ var (
 			return nil
 		},
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("Story v0.1 --HEAD")
+			userName := viper.GetString("user")
 			_ = os.MkdirAll("stories", os.ModePerm)
 			_ = os.MkdirAll("stories/db", os.ModePerm)
 			InitStory()
@@ -36,6 +36,7 @@ var (
 
 			if create != "" {
 				CreateStory(create)
+				return
 			}
 
 			list := cmd.Flag("list").Value.String()
@@ -49,12 +50,17 @@ var (
 					str := []string{v.Id, v.Title, v.StartDate.String(), v.Status, v.Author}
 					table.Append(str)
 				}
-				table.Render() // Send output
+				table.Render()
 			}
 
 			pick := cmd.Flag("pick").Value.String()
 			if pick != "" {
-				PickStory(pick)
+				PickStory(pick, userName)
+			}
+
+			status := cmd.Flag("status").Value.String()
+			if pick != "" && status != "" {
+				ChangeStoryStatus(pick, status)
 			}
 		},
 	}
@@ -73,12 +79,11 @@ func init() {
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.cobra.yaml)")
 	rootCmd.PersistentFlags().StringP("create", "c", "", "create a story")
-	rootCmd.PersistentFlags().StringP("list", "l", "l", "list a story")
+	rootCmd.PersistentFlags().StringP("list", "l", "", "list a story")
 	rootCmd.PersistentFlags().StringP("pick", "p", "", "pick a story")
-	rootCmd.PersistentFlags().StringP("action", "a", "", "action a story")
+	rootCmd.PersistentFlags().StringP("status", "s", "", "change status of story")
 	rootCmd.PersistentFlags().StringP("journal", "j", "", "show user journal")
-	rootCmd.PersistentFlags().StringP("show", "s", "", "show a story")
-	rootCmd.PersistentFlags().StringP("user", "u", "Your Name", "list author")
+	rootCmd.PersistentFlags().StringP("user", "u", "", "list author")
 
 	viper.BindPFlag("user", rootCmd.PersistentFlags().Lookup("user"))
 }
