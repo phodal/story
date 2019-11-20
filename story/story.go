@@ -1,6 +1,8 @@
 package story
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/google/uuid"
 	"log"
 	"time"
@@ -28,8 +30,21 @@ func InitStory() {
 	driver, _ = NewZhu("story/db")
 }
 
-func AddStory() {
+func ListStory()  {
+	storyList, error := driver.ReadAll("story")
+	if error != nil {
+		log.Fatal(error)
+	}
 
+	stories := []StoryModel{}
+	for _, f := range storyList {
+		story := StoryModel{}
+		if err := json.Unmarshal([]byte(f), &story); err != nil {
+			fmt.Println("Error", err)
+		}
+		fmt.Println(story.Title)
+		stories = append(stories, story)
+	}
 }
 
 func CreateStory(content string) {

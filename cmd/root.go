@@ -33,6 +33,11 @@ var (
 			if create != "" {
 				CreateStory(create)
 			}
+
+			list := cmd.Flag("list").Value.String()
+			if list != "" {
+				ListStory()
+			}
 		},
 	}
 )
@@ -50,7 +55,7 @@ func init() {
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.cobra.yaml)")
 	rootCmd.PersistentFlags().StringP("create", "c", "", "create a story")
-	rootCmd.PersistentFlags().StringP("list", "l", "", "list a story")
+	rootCmd.PersistentFlags().StringP("list", "l", "list", "list a story")
 	rootCmd.PersistentFlags().StringP("pick", "p", "", "pick a story")
 	rootCmd.PersistentFlags().StringP("action", "a", "", "action a story")
 	rootCmd.PersistentFlags().StringP("journal", "j", "", "show user journal")

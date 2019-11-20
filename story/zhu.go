@@ -109,6 +109,46 @@ func (d *Driver) Read(collection, resource string, v interface{}) error {
 	return json.Unmarshal(b, &v)
 }
 
+// ReadAll records from a collection; this is returned as a slice of strings because
+// there is no way of knowing what type the record is.
+func (d *Driver) ReadAll(collection string) ([]string, error) {
+
+	// ensure there is a collection to read
+	if collection == "" {
+		return nil, fmt.Errorf("Missing collection - unable to record location!")
+	}
+
+	//
+	dir := filepath.Join(d.dir, collection)
+
+	// check to see if collection (directory) exists
+	if _, err := stat(dir); err != nil {
+		return nil, err
+	}
+
+	// read all the files in the transaction.Collection; an error here just means
+	// the collection is either empty or doesn't exist
+	files, _ := ioutil.ReadDir(dir)
+
+	// the files read from the database
+	var records []string
+
+	// iterate over each of the files, attempting to read the file. If successful
+	// append the files to the collection of read files
+	for _, file := range files {
+		b, err := ioutil.ReadFile(filepath.Join(dir, file.Name()))
+		if err != nil {
+			return nil, err
+		}
+
+		// append read file
+		records = append(records, string(b))
+	}
+
+	// unmarhsal the read files as a comma delimeted byte array
+	return records, nil
+}
+
 // Delete locks that database and then attempts to remove the collection/resource
 // specified by [path]
 func (d *Driver) Delete(collection, resource string) error {
