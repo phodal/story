@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	homedir "github.com/mitchellh/go-homedir"
+	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"log"
@@ -28,16 +29,32 @@ var (
 		Run: func(cmd *cobra.Command, args []string) {
 			fmt.Println("Story v0.1 --HEAD")
 			_ = os.MkdirAll("stories", os.ModePerm)
+			_ = os.MkdirAll("stories/db", os.ModePerm)
 			InitStory()
 
 			create := cmd.Flag("create").Value.String()
+
 			if create != "" {
 				CreateStory(create)
 			}
 
 			list := cmd.Flag("list").Value.String()
 			if list != "" {
-				ListStory()
+				stories := ListStory()
+
+				table := tablewriter.NewWriter(os.Stdout)
+				table.SetHeader([]string{"Id", "Title", "Date", "Status", "Author"})
+
+				for _, v := range stories {
+					str := []string{v.Id, v.Title, v.StartDate.String(), v.Status, v.Author}
+					table.Append(str)
+				}
+				table.Render() // Send output
+			}
+
+			pick := cmd.Flag("pick").Value.String()
+			if pick != "" {
+				PickStory(pick)
 			}
 		},
 	}
@@ -56,7 +73,7 @@ func init() {
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.cobra.yaml)")
 	rootCmd.PersistentFlags().StringP("create", "c", "", "create a story")
-	rootCmd.PersistentFlags().StringP("list", "l", "list", "list a story")
+	rootCmd.PersistentFlags().StringP("list", "l", "l", "list a story")
 	rootCmd.PersistentFlags().StringP("pick", "p", "", "pick a story")
 	rootCmd.PersistentFlags().StringP("action", "a", "", "action a story")
 	rootCmd.PersistentFlags().StringP("journal", "j", "", "show user journal")

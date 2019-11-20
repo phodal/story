@@ -24,6 +24,8 @@ type StoryModel struct {
 	StoryDate    `json:"date,omitempty"`
 	Dependencies string `json:"dependencies,omitempty"`
 	Priority     string `json:"priority,omitempty"`
+	Author       string `json:"author,omitempty"`
+	Status       string `json:"status,omitempty"`
 }
 
 var driver *Driver
@@ -39,7 +41,7 @@ func InitStory() {
 	driver, _ = NewZhu("stories/db")
 }
 
-func ListStory() {
+func ListStory() []StoryModel {
 	storyList, error := driver.ReadAll("stories")
 	if error != nil {
 		log.Fatal(error)
@@ -51,16 +53,17 @@ func ListStory() {
 		if err := json.Unmarshal([]byte(f), &story); err != nil {
 			fmt.Println("Error", err)
 		}
-		fmt.Println(story.Title)
 		stories = append(stories, story)
 	}
+
+	return stories
 }
 
 func CreateStory(content string) {
 	u1 := uuid.Must(uuid.NewUUID()).String()
 
 	date := &StoryDate{time.Now(), time.Now()}
-	story := &StoryModel{u1, content, "", "", "", *date, "", ""}
+	story := &StoryModel{u1, content, "", "", "", *date, "", "", "", ""}
 
 	t, _ := template.New("story").Parse(storyTemplate)
 	file, err := os.Create("stories/" + u1 + ".md")
@@ -79,4 +82,8 @@ func CreateStory(content string) {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func PickStory(id string) {
+	fmt.Println(id)
 }
