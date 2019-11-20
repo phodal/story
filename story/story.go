@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/google/uuid"
+	"io/ioutil"
 	"log"
 	"time"
 )
@@ -27,11 +28,11 @@ type StoryModel struct {
 var driver *Driver
 
 func InitStory() {
-	driver, _ = NewZhu("story/db")
+	driver, _ = NewZhu("stories/db")
 }
 
 func ListStory()  {
-	storyList, error := driver.ReadAll("story")
+	storyList, error := driver.ReadAll("stories")
 	if error != nil {
 		log.Fatal(error)
 	}
@@ -48,12 +49,20 @@ func ListStory()  {
 }
 
 func CreateStory(content string) {
-	u1 := uuid.Must(uuid.NewUUID())
+	u1 := uuid.Must(uuid.NewUUID()).String()
 
 	date := &StoryDate{time.Now(), time.Now()}
-	story := &StoryModel{u1.String(), content, "", "", "", *date, "", ""}
+	story := &StoryModel{u1, content, "", "", "", *date, "", ""}
 
-	error := driver.Write("story", story.Id, story)
+	fileError := ioutil.WriteFile("stories/"+u1+".md", []byte(`作为
+我想要
+这样就能
+`), 0644)
+	if fileError != nil {
+		log.Fatal(fileError)
+	}
+
+	error := driver.Write("stories", story.Id, story)
 	if error != nil {
 		log.Fatal(error)
 	}

@@ -27,6 +27,7 @@ var (
 		},
 		Run: func(cmd *cobra.Command, args []string) {
 			fmt.Println("Story v0.1 --HEAD")
+			_ = os.MkdirAll("stories", os.ModePerm)
 			InitStory()
 
 			create := cmd.Flag("create").Value.String()
