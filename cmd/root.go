@@ -30,6 +30,7 @@ var (
 			userName := viper.GetString("user")
 			_ = os.MkdirAll("stories", os.ModePerm)
 			_ = os.MkdirAll("stories/db", os.ModePerm)
+			_ = os.MkdirAll("stories/docs", os.ModePerm)
 			InitStory()
 
 			create := cmd.Flag("create").Value.String()

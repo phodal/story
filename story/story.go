@@ -39,6 +39,12 @@ var storyTemplate = `作为
 
 func InitStory() {
 	driver, _ = NewZhu("stories/db")
+
+	SyncStory()
+}
+
+func SyncStory() {
+
 }
 
 func ListStory() []StoryModel {
@@ -66,7 +72,7 @@ func CreateStory(content string) {
 	story := &StoryModel{u1, content, "", "", "", *date, "", "", "", ""}
 
 	t, _ := template.New("story").Parse(storyTemplate)
-	file, err := os.Create("stories/" + u1 + ".md")
+	file, err := os.Create("stories/docs/" + u1 + ".md")
 	if err != nil {
 		log.Println("create file: ", err)
 		return

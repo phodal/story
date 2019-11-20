@@ -31,7 +31,7 @@ func NewZhu(dir string) (*Driver, error) {
 	}
 
 	if _, err := os.Stat(dir); err == nil {
-		log.Println("Using '%s' (database already exists)\n", dir)
+		log.Println("Using '%s' (database already exists):" , dir)
 		return &driver, nil
 	}
 
