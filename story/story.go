@@ -3,7 +3,6 @@ package story
 import (
 	. "../parser"
 	"encoding/json"
-	"fmt"
 	"github.com/teris-io/shortid"
 	"io/ioutil"
 	"log"
@@ -59,14 +58,7 @@ func SyncStory() {
 
 func ListStory() []StoryModel {
 	stories := []StoryModel{}
-	//for _, f := range storyList {
-	//	story := StoryModel{}
-	//	if err := json.Unmarshal([]byte(f), &story); err != nil {
-	//		fmt.Println("Error", err)
-	//	}
-	//	stories = append(stories, story)
-	//}
-	//
+
 	return stories
 }
 
@@ -169,7 +161,6 @@ func getFeatureFileNameById(id string) string {
 	}
 
 	for _, f := range files {
-		fmt.Println(f.Name(), id)
 		if strings.Contains(f.Name(), id) {
 			return f.Name()
 		}
