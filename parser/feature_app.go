@@ -14,8 +14,9 @@ type FeatureApp struct {
 }
 
 func (j *FeatureApp) Start(path string) {
-	context := (*FeatureApp)(nil).ProcessFile(path).CompilationUnit()
+	context := (*FeatureApp)(nil).ProcessFile(path).Feature()
 	listener := NewFeatureAppListener()
+
 	antlr.NewParseTreeWalker().Walk(listener, context)
 }
 

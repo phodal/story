@@ -8,11 +8,23 @@ type BaseFeatureVisitor struct {
 	*antlr.BaseParseTreeVisitor
 }
 
-func (v *BaseFeatureVisitor) VisitCompilationUnit(ctx *CompilationUnitContext) interface{} {
+func (v *BaseFeatureVisitor) VisitFeature(ctx *FeatureContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseFeatureVisitor) VisitFeature_elements(ctx *Feature_elementsContext) interface{} {
+func (v *BaseFeatureVisitor) VisitFeatureHeader(ctx *FeatureHeaderContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseFeatureVisitor) VisitFeatureBody(ctx *FeatureBodyContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseFeatureVisitor) VisitBackground(ctx *BackgroundContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseFeatureVisitor) VisitBlockBody(ctx *BlockBodyContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -20,11 +32,35 @@ func (v *BaseFeatureVisitor) VisitScenario(ctx *ScenarioContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseFeatureVisitor) VisitScenario_outline(ctx *Scenario_outlineContext) interface{} {
+func (v *BaseFeatureVisitor) VisitTags(ctx *TagsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseFeatureVisitor) VisitSteps(ctx *StepsContext) interface{} {
+func (v *BaseFeatureVisitor) VisitAnyText(ctx *AnyTextContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseFeatureVisitor) VisitValue(ctx *ValueContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseFeatureVisitor) VisitGiven(ctx *GivenContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseFeatureVisitor) VisitWhen(ctx *WhenContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseFeatureVisitor) VisitOr(ctx *OrContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseFeatureVisitor) VisitAnd(ctx *AndContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseFeatureVisitor) VisitThen(ctx *ThenContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -32,23 +68,15 @@ func (v *BaseFeatureVisitor) VisitStep(ctx *StepContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseFeatureVisitor) VisitExamples_sections(ctx *Examples_sectionsContext) interface{} {
+func (v *BaseFeatureVisitor) VisitStepContent(ctx *StepContentContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseFeatureVisitor) VisitExamples(ctx *ExamplesContext) interface{} {
+func (v *BaseFeatureVisitor) VisitStepText(ctx *StepTextContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseFeatureVisitor) VisitMultiline_arg(ctx *Multiline_argContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseFeatureVisitor) VisitTable(ctx *TableContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseFeatureVisitor) VisitTable_row(ctx *Table_rowContext) interface{} {
+func (v *BaseFeatureVisitor) VisitRow(ctx *RowContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -56,42 +84,18 @@ func (v *BaseFeatureVisitor) VisitCell(ctx *CellContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseFeatureVisitor) VisitTags(ctx *TagsContext) interface{} {
+func (v *BaseFeatureVisitor) VisitParameter(ctx *ParameterContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseFeatureVisitor) VisitTag(ctx *TagContext) interface{} {
+func (v *BaseFeatureVisitor) VisitContentNoQuotes(ctx *ContentNoQuotesContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseFeatureVisitor) VisitComment(ctx *CommentContext) interface{} {
+func (v *BaseFeatureVisitor) VisitContentNoPipes(ctx *ContentNoPipesContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseFeatureVisitor) VisitComment_line(ctx *Comment_lineContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseFeatureVisitor) VisitLine_to_eol(ctx *Line_to_eolContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseFeatureVisitor) VisitFeature_keyword(ctx *Feature_keywordContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseFeatureVisitor) VisitScenario_keyword(ctx *Scenario_keywordContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseFeatureVisitor) VisitScenario_outline_keyword(ctx *Scenario_outline_keywordContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseFeatureVisitor) VisitStep_keyword(ctx *Step_keywordContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseFeatureVisitor) VisitExamples_keyword(ctx *Examples_keywordContext) interface{} {
+func (v *BaseFeatureVisitor) VisitContent(ctx *ContentContext) interface{} {
 	return v.VisitChildren(ctx)
 }

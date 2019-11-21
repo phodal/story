@@ -1,68 +1,78 @@
 grammar Feature;
 
-compilationUnit: NEWLINE* comment? NEWLINE* SPACE* tags? NEWLINE* SPACE* feature_keyword SPACE* line_to_eol NEWLINE+ (feature_elements .)* feature_elements EOF;
+feature: featureHeader featureBody;
 
-feature_elements
-	:	(scenario_outline | scenario)* ;
+featureHeader: (Space | NewLine)* tags* Feature Space* content NewLine+;
 
-scenario
-	:	comment? tags? scenario_keyword SPACE* line_to_eol NEWLINE+ steps
-	;
+featureBody: background? scenario+;
 
-scenario_outline
-	:	comment? tags? scenario_outline_keyword SPACE* line_to_eol NEWLINE+ steps examples_sections
-	;
+background: (Space | NewLine)* tags* Background Space* content? (NewLine | EOF) blockBody (NewLine | EOF);
 
-steps 	:	step* ;
+blockBody: (given | when | or | then | and)*;
 
-step	:	step_keyword SPACE* line_to_eol NEWLINE+ multiline_arg? ;
+scenario: (Space | NewLine)* tags* Space* Scenario Space* content (NewLine | EOF) blockBody;
 
-examples_sections
-	:	examples+ ;
+// Annotations
 
-examples
-	:	examples_keyword SPACE* line_to_eol NEWLINE+ table ;
+tags: (Space | NewLine)* At anyText value? Space* NewLine;
 
-multiline_arg
-	:	table ;
+anyText: .*?;
 
-table 	:	table_row+ ;
+value: LBracket content RBracket;
 
-table_row
-	: 	SPACE* '|' (cell '|')+ SPACE* (NEWLINE+) ;
+// Keywords
 
-cell	: 	(~('|' | NEWLINE) .)* ;
+given: (Space | NewLine)* Given step;
 
-tags	: 	tag (SPACE tag)* NEWLINE+ ;
+when: (Space | NewLine)* When step;
 
-tag 	:  	'@' tag_name=ID ;
+or: (Space | NewLine)* Or step;
 
-comment
-	: 	(comment_line NEWLINE)* ;
+and: (Space | NewLine)* And step;
 
-comment_line
-	: 	'#' line_to_eol;
+then: (Space | NewLine)* Then step;
 
-line_to_eol
-	: 	(~NEWLINE)* ;
+// Steps and data tables
 
-feature_keyword
-	:	'Feature' ':'? ;
+step: Space* stepContent row*;
 
-scenario_keyword
-	: 	'Scenario' ':'? ;
+stepContent: stepText (NewLine+ | EOF);
 
-scenario_outline_keyword
-	: 	'Scenario Outline' ':'? ;
+stepText: (contentNoQuotes | Space | parameter)*;
 
-step_keyword
-	: 	'Given' | 'When' | 'Then' | 'And' | 'But' ;
+row: Space* Pipe cell+ (NewLine+ | EOF);
 
-examples_keyword
-	: 	'Examples' ':'? ;
+cell: Space* contentNoPipes Pipe;
 
-ID : 	('a'..'z'|'A'..'Z'|'_')+ ;
+parameter: Quote anyText Quote;
 
-NEWLINE:  	(('\r')? '\n' )+ ;
+// Common
 
-SPACE: 	(' '|'\t')+ -> channel(HIDDEN);
+contentNoQuotes: (Char|LBracket) (Char|LBracket|RBracket|At|Pipe|Space)*;
+
+contentNoPipes: (Char|LBracket) (Char|LBracket|RBracket|At|Quote|Space)*;
+
+content: (Char|LBracket) (Char|LBracket|RBracket|At|Quote|Pipe|Space)*;
+
+Comment: Space* '#' .*? (NewLine | EOF) -> channel(2);
+EmptyLine: NewLine Space+ (NewLine | EOF) -> skip;
+
+And: 'And ' | '而且' | '并且' | '同时' ;
+Or: 'Or ' | '或者';
+Given: 'Given ' | '假如' | '假设' | '假定' ;
+When: 'When ' | '当';
+Then: 'Then ' | '那么';
+Background: ('Background' | '背景') [ ]* COLON;
+Scenario: ('Scenario' | '场景' | '剧本') [ ]* COLON;
+Feature: ('Feature' | '功能') [ ]* COLON;
+
+Space : [ \t];
+NewLine : '\r\n' | '\n';
+Quote: '"';
+LBracket: '(';
+RBracket: ')';
+At: '@';
+Pipe: '|';
+Char: ~[ \t\r\n()]+?;
+
+fragment COLON: ':';

@@ -8,135 +8,141 @@ import "github.com/antlr/antlr4/runtime/Go/antlr"
 type FeatureListener interface {
 	antlr.ParseTreeListener
 
-	// EnterCompilationUnit is called when entering the compilationUnit production.
-	EnterCompilationUnit(c *CompilationUnitContext)
+	// EnterFeature is called when entering the feature production.
+	EnterFeature(c *FeatureContext)
 
-	// EnterFeature_elements is called when entering the feature_elements production.
-	EnterFeature_elements(c *Feature_elementsContext)
+	// EnterFeatureHeader is called when entering the featureHeader production.
+	EnterFeatureHeader(c *FeatureHeaderContext)
+
+	// EnterFeatureBody is called when entering the featureBody production.
+	EnterFeatureBody(c *FeatureBodyContext)
+
+	// EnterBackground is called when entering the background production.
+	EnterBackground(c *BackgroundContext)
+
+	// EnterBlockBody is called when entering the blockBody production.
+	EnterBlockBody(c *BlockBodyContext)
 
 	// EnterScenario is called when entering the scenario production.
 	EnterScenario(c *ScenarioContext)
 
-	// EnterScenario_outline is called when entering the scenario_outline production.
-	EnterScenario_outline(c *Scenario_outlineContext)
+	// EnterTags is called when entering the tags production.
+	EnterTags(c *TagsContext)
 
-	// EnterSteps is called when entering the steps production.
-	EnterSteps(c *StepsContext)
+	// EnterAnyText is called when entering the anyText production.
+	EnterAnyText(c *AnyTextContext)
+
+	// EnterValue is called when entering the value production.
+	EnterValue(c *ValueContext)
+
+	// EnterGiven is called when entering the given production.
+	EnterGiven(c *GivenContext)
+
+	// EnterWhen is called when entering the when production.
+	EnterWhen(c *WhenContext)
+
+	// EnterOr is called when entering the or production.
+	EnterOr(c *OrContext)
+
+	// EnterAnd is called when entering the and production.
+	EnterAnd(c *AndContext)
+
+	// EnterThen is called when entering the then production.
+	EnterThen(c *ThenContext)
 
 	// EnterStep is called when entering the step production.
 	EnterStep(c *StepContext)
 
-	// EnterExamples_sections is called when entering the examples_sections production.
-	EnterExamples_sections(c *Examples_sectionsContext)
+	// EnterStepContent is called when entering the stepContent production.
+	EnterStepContent(c *StepContentContext)
 
-	// EnterExamples is called when entering the examples production.
-	EnterExamples(c *ExamplesContext)
+	// EnterStepText is called when entering the stepText production.
+	EnterStepText(c *StepTextContext)
 
-	// EnterMultiline_arg is called when entering the multiline_arg production.
-	EnterMultiline_arg(c *Multiline_argContext)
-
-	// EnterTable is called when entering the table production.
-	EnterTable(c *TableContext)
-
-	// EnterTable_row is called when entering the table_row production.
-	EnterTable_row(c *Table_rowContext)
+	// EnterRow is called when entering the row production.
+	EnterRow(c *RowContext)
 
 	// EnterCell is called when entering the cell production.
 	EnterCell(c *CellContext)
 
-	// EnterTags is called when entering the tags production.
-	EnterTags(c *TagsContext)
+	// EnterParameter is called when entering the parameter production.
+	EnterParameter(c *ParameterContext)
 
-	// EnterTag is called when entering the tag production.
-	EnterTag(c *TagContext)
+	// EnterContentNoQuotes is called when entering the contentNoQuotes production.
+	EnterContentNoQuotes(c *ContentNoQuotesContext)
 
-	// EnterComment is called when entering the comment production.
-	EnterComment(c *CommentContext)
+	// EnterContentNoPipes is called when entering the contentNoPipes production.
+	EnterContentNoPipes(c *ContentNoPipesContext)
 
-	// EnterComment_line is called when entering the comment_line production.
-	EnterComment_line(c *Comment_lineContext)
+	// EnterContent is called when entering the content production.
+	EnterContent(c *ContentContext)
 
-	// EnterLine_to_eol is called when entering the line_to_eol production.
-	EnterLine_to_eol(c *Line_to_eolContext)
+	// ExitFeature is called when exiting the feature production.
+	ExitFeature(c *FeatureContext)
 
-	// EnterFeature_keyword is called when entering the feature_keyword production.
-	EnterFeature_keyword(c *Feature_keywordContext)
+	// ExitFeatureHeader is called when exiting the featureHeader production.
+	ExitFeatureHeader(c *FeatureHeaderContext)
 
-	// EnterScenario_keyword is called when entering the scenario_keyword production.
-	EnterScenario_keyword(c *Scenario_keywordContext)
+	// ExitFeatureBody is called when exiting the featureBody production.
+	ExitFeatureBody(c *FeatureBodyContext)
 
-	// EnterScenario_outline_keyword is called when entering the scenario_outline_keyword production.
-	EnterScenario_outline_keyword(c *Scenario_outline_keywordContext)
+	// ExitBackground is called when exiting the background production.
+	ExitBackground(c *BackgroundContext)
 
-	// EnterStep_keyword is called when entering the step_keyword production.
-	EnterStep_keyword(c *Step_keywordContext)
-
-	// EnterExamples_keyword is called when entering the examples_keyword production.
-	EnterExamples_keyword(c *Examples_keywordContext)
-
-	// ExitCompilationUnit is called when exiting the compilationUnit production.
-	ExitCompilationUnit(c *CompilationUnitContext)
-
-	// ExitFeature_elements is called when exiting the feature_elements production.
-	ExitFeature_elements(c *Feature_elementsContext)
+	// ExitBlockBody is called when exiting the blockBody production.
+	ExitBlockBody(c *BlockBodyContext)
 
 	// ExitScenario is called when exiting the scenario production.
 	ExitScenario(c *ScenarioContext)
 
-	// ExitScenario_outline is called when exiting the scenario_outline production.
-	ExitScenario_outline(c *Scenario_outlineContext)
+	// ExitTags is called when exiting the tags production.
+	ExitTags(c *TagsContext)
 
-	// ExitSteps is called when exiting the steps production.
-	ExitSteps(c *StepsContext)
+	// ExitAnyText is called when exiting the anyText production.
+	ExitAnyText(c *AnyTextContext)
+
+	// ExitValue is called when exiting the value production.
+	ExitValue(c *ValueContext)
+
+	// ExitGiven is called when exiting the given production.
+	ExitGiven(c *GivenContext)
+
+	// ExitWhen is called when exiting the when production.
+	ExitWhen(c *WhenContext)
+
+	// ExitOr is called when exiting the or production.
+	ExitOr(c *OrContext)
+
+	// ExitAnd is called when exiting the and production.
+	ExitAnd(c *AndContext)
+
+	// ExitThen is called when exiting the then production.
+	ExitThen(c *ThenContext)
 
 	// ExitStep is called when exiting the step production.
 	ExitStep(c *StepContext)
 
-	// ExitExamples_sections is called when exiting the examples_sections production.
-	ExitExamples_sections(c *Examples_sectionsContext)
+	// ExitStepContent is called when exiting the stepContent production.
+	ExitStepContent(c *StepContentContext)
 
-	// ExitExamples is called when exiting the examples production.
-	ExitExamples(c *ExamplesContext)
+	// ExitStepText is called when exiting the stepText production.
+	ExitStepText(c *StepTextContext)
 
-	// ExitMultiline_arg is called when exiting the multiline_arg production.
-	ExitMultiline_arg(c *Multiline_argContext)
-
-	// ExitTable is called when exiting the table production.
-	ExitTable(c *TableContext)
-
-	// ExitTable_row is called when exiting the table_row production.
-	ExitTable_row(c *Table_rowContext)
+	// ExitRow is called when exiting the row production.
+	ExitRow(c *RowContext)
 
 	// ExitCell is called when exiting the cell production.
 	ExitCell(c *CellContext)
 
-	// ExitTags is called when exiting the tags production.
-	ExitTags(c *TagsContext)
+	// ExitParameter is called when exiting the parameter production.
+	ExitParameter(c *ParameterContext)
 
-	// ExitTag is called when exiting the tag production.
-	ExitTag(c *TagContext)
+	// ExitContentNoQuotes is called when exiting the contentNoQuotes production.
+	ExitContentNoQuotes(c *ContentNoQuotesContext)
 
-	// ExitComment is called when exiting the comment production.
-	ExitComment(c *CommentContext)
+	// ExitContentNoPipes is called when exiting the contentNoPipes production.
+	ExitContentNoPipes(c *ContentNoPipesContext)
 
-	// ExitComment_line is called when exiting the comment_line production.
-	ExitComment_line(c *Comment_lineContext)
-
-	// ExitLine_to_eol is called when exiting the line_to_eol production.
-	ExitLine_to_eol(c *Line_to_eolContext)
-
-	// ExitFeature_keyword is called when exiting the feature_keyword production.
-	ExitFeature_keyword(c *Feature_keywordContext)
-
-	// ExitScenario_keyword is called when exiting the scenario_keyword production.
-	ExitScenario_keyword(c *Scenario_keywordContext)
-
-	// ExitScenario_outline_keyword is called when exiting the scenario_outline_keyword production.
-	ExitScenario_outline_keyword(c *Scenario_outline_keywordContext)
-
-	// ExitStep_keyword is called when exiting the step_keyword production.
-	ExitStep_keyword(c *Step_keywordContext)
-
-	// ExitExamples_keyword is called when exiting the examples_keyword production.
-	ExitExamples_keyword(c *Examples_keywordContext)
+	// ExitContent is called when exiting the content production.
+	ExitContent(c *ContentContext)
 }

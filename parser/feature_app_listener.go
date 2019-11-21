@@ -16,3 +16,7 @@ type FeatureAppListener struct {
 func (s *FeatureAppListener) EnterScenario(ctx *ScenarioContext) {
 	fmt.Println(ctx.GetText())
 }
+
+func (s *FeatureAppListener) EnterAnd(ctx *AndContext) {
+	fmt.Println(ctx.GetText())
+}

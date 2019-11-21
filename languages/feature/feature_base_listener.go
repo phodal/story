@@ -21,17 +21,35 @@ func (s *BaseFeatureListener) EnterEveryRule(ctx antlr.ParserRuleContext) {}
 // ExitEveryRule is called when any rule is exited.
 func (s *BaseFeatureListener) ExitEveryRule(ctx antlr.ParserRuleContext) {}
 
-// EnterCompilationUnit is called when production compilationUnit is entered.
-func (s *BaseFeatureListener) EnterCompilationUnit(ctx *CompilationUnitContext) {}
+// EnterFeature is called when production feature is entered.
+func (s *BaseFeatureListener) EnterFeature(ctx *FeatureContext) {}
 
-// ExitCompilationUnit is called when production compilationUnit is exited.
-func (s *BaseFeatureListener) ExitCompilationUnit(ctx *CompilationUnitContext) {}
+// ExitFeature is called when production feature is exited.
+func (s *BaseFeatureListener) ExitFeature(ctx *FeatureContext) {}
 
-// EnterFeature_elements is called when production feature_elements is entered.
-func (s *BaseFeatureListener) EnterFeature_elements(ctx *Feature_elementsContext) {}
+// EnterFeatureHeader is called when production featureHeader is entered.
+func (s *BaseFeatureListener) EnterFeatureHeader(ctx *FeatureHeaderContext) {}
 
-// ExitFeature_elements is called when production feature_elements is exited.
-func (s *BaseFeatureListener) ExitFeature_elements(ctx *Feature_elementsContext) {}
+// ExitFeatureHeader is called when production featureHeader is exited.
+func (s *BaseFeatureListener) ExitFeatureHeader(ctx *FeatureHeaderContext) {}
+
+// EnterFeatureBody is called when production featureBody is entered.
+func (s *BaseFeatureListener) EnterFeatureBody(ctx *FeatureBodyContext) {}
+
+// ExitFeatureBody is called when production featureBody is exited.
+func (s *BaseFeatureListener) ExitFeatureBody(ctx *FeatureBodyContext) {}
+
+// EnterBackground is called when production background is entered.
+func (s *BaseFeatureListener) EnterBackground(ctx *BackgroundContext) {}
+
+// ExitBackground is called when production background is exited.
+func (s *BaseFeatureListener) ExitBackground(ctx *BackgroundContext) {}
+
+// EnterBlockBody is called when production blockBody is entered.
+func (s *BaseFeatureListener) EnterBlockBody(ctx *BlockBodyContext) {}
+
+// ExitBlockBody is called when production blockBody is exited.
+func (s *BaseFeatureListener) ExitBlockBody(ctx *BlockBodyContext) {}
 
 // EnterScenario is called when production scenario is entered.
 func (s *BaseFeatureListener) EnterScenario(ctx *ScenarioContext) {}
@@ -39,17 +57,53 @@ func (s *BaseFeatureListener) EnterScenario(ctx *ScenarioContext) {}
 // ExitScenario is called when production scenario is exited.
 func (s *BaseFeatureListener) ExitScenario(ctx *ScenarioContext) {}
 
-// EnterScenario_outline is called when production scenario_outline is entered.
-func (s *BaseFeatureListener) EnterScenario_outline(ctx *Scenario_outlineContext) {}
+// EnterTags is called when production tags is entered.
+func (s *BaseFeatureListener) EnterTags(ctx *TagsContext) {}
 
-// ExitScenario_outline is called when production scenario_outline is exited.
-func (s *BaseFeatureListener) ExitScenario_outline(ctx *Scenario_outlineContext) {}
+// ExitTags is called when production tags is exited.
+func (s *BaseFeatureListener) ExitTags(ctx *TagsContext) {}
 
-// EnterSteps is called when production steps is entered.
-func (s *BaseFeatureListener) EnterSteps(ctx *StepsContext) {}
+// EnterAnyText is called when production anyText is entered.
+func (s *BaseFeatureListener) EnterAnyText(ctx *AnyTextContext) {}
 
-// ExitSteps is called when production steps is exited.
-func (s *BaseFeatureListener) ExitSteps(ctx *StepsContext) {}
+// ExitAnyText is called when production anyText is exited.
+func (s *BaseFeatureListener) ExitAnyText(ctx *AnyTextContext) {}
+
+// EnterValue is called when production value is entered.
+func (s *BaseFeatureListener) EnterValue(ctx *ValueContext) {}
+
+// ExitValue is called when production value is exited.
+func (s *BaseFeatureListener) ExitValue(ctx *ValueContext) {}
+
+// EnterGiven is called when production given is entered.
+func (s *BaseFeatureListener) EnterGiven(ctx *GivenContext) {}
+
+// ExitGiven is called when production given is exited.
+func (s *BaseFeatureListener) ExitGiven(ctx *GivenContext) {}
+
+// EnterWhen is called when production when is entered.
+func (s *BaseFeatureListener) EnterWhen(ctx *WhenContext) {}
+
+// ExitWhen is called when production when is exited.
+func (s *BaseFeatureListener) ExitWhen(ctx *WhenContext) {}
+
+// EnterOr is called when production or is entered.
+func (s *BaseFeatureListener) EnterOr(ctx *OrContext) {}
+
+// ExitOr is called when production or is exited.
+func (s *BaseFeatureListener) ExitOr(ctx *OrContext) {}
+
+// EnterAnd is called when production and is entered.
+func (s *BaseFeatureListener) EnterAnd(ctx *AndContext) {}
+
+// ExitAnd is called when production and is exited.
+func (s *BaseFeatureListener) ExitAnd(ctx *AndContext) {}
+
+// EnterThen is called when production then is entered.
+func (s *BaseFeatureListener) EnterThen(ctx *ThenContext) {}
+
+// ExitThen is called when production then is exited.
+func (s *BaseFeatureListener) ExitThen(ctx *ThenContext) {}
 
 // EnterStep is called when production step is entered.
 func (s *BaseFeatureListener) EnterStep(ctx *StepContext) {}
@@ -57,35 +111,23 @@ func (s *BaseFeatureListener) EnterStep(ctx *StepContext) {}
 // ExitStep is called when production step is exited.
 func (s *BaseFeatureListener) ExitStep(ctx *StepContext) {}
 
-// EnterExamples_sections is called when production examples_sections is entered.
-func (s *BaseFeatureListener) EnterExamples_sections(ctx *Examples_sectionsContext) {}
+// EnterStepContent is called when production stepContent is entered.
+func (s *BaseFeatureListener) EnterStepContent(ctx *StepContentContext) {}
 
-// ExitExamples_sections is called when production examples_sections is exited.
-func (s *BaseFeatureListener) ExitExamples_sections(ctx *Examples_sectionsContext) {}
+// ExitStepContent is called when production stepContent is exited.
+func (s *BaseFeatureListener) ExitStepContent(ctx *StepContentContext) {}
 
-// EnterExamples is called when production examples is entered.
-func (s *BaseFeatureListener) EnterExamples(ctx *ExamplesContext) {}
+// EnterStepText is called when production stepText is entered.
+func (s *BaseFeatureListener) EnterStepText(ctx *StepTextContext) {}
 
-// ExitExamples is called when production examples is exited.
-func (s *BaseFeatureListener) ExitExamples(ctx *ExamplesContext) {}
+// ExitStepText is called when production stepText is exited.
+func (s *BaseFeatureListener) ExitStepText(ctx *StepTextContext) {}
 
-// EnterMultiline_arg is called when production multiline_arg is entered.
-func (s *BaseFeatureListener) EnterMultiline_arg(ctx *Multiline_argContext) {}
+// EnterRow is called when production row is entered.
+func (s *BaseFeatureListener) EnterRow(ctx *RowContext) {}
 
-// ExitMultiline_arg is called when production multiline_arg is exited.
-func (s *BaseFeatureListener) ExitMultiline_arg(ctx *Multiline_argContext) {}
-
-// EnterTable is called when production table is entered.
-func (s *BaseFeatureListener) EnterTable(ctx *TableContext) {}
-
-// ExitTable is called when production table is exited.
-func (s *BaseFeatureListener) ExitTable(ctx *TableContext) {}
-
-// EnterTable_row is called when production table_row is entered.
-func (s *BaseFeatureListener) EnterTable_row(ctx *Table_rowContext) {}
-
-// ExitTable_row is called when production table_row is exited.
-func (s *BaseFeatureListener) ExitTable_row(ctx *Table_rowContext) {}
+// ExitRow is called when production row is exited.
+func (s *BaseFeatureListener) ExitRow(ctx *RowContext) {}
 
 // EnterCell is called when production cell is entered.
 func (s *BaseFeatureListener) EnterCell(ctx *CellContext) {}
@@ -93,62 +135,26 @@ func (s *BaseFeatureListener) EnterCell(ctx *CellContext) {}
 // ExitCell is called when production cell is exited.
 func (s *BaseFeatureListener) ExitCell(ctx *CellContext) {}
 
-// EnterTags is called when production tags is entered.
-func (s *BaseFeatureListener) EnterTags(ctx *TagsContext) {}
+// EnterParameter is called when production parameter is entered.
+func (s *BaseFeatureListener) EnterParameter(ctx *ParameterContext) {}
 
-// ExitTags is called when production tags is exited.
-func (s *BaseFeatureListener) ExitTags(ctx *TagsContext) {}
+// ExitParameter is called when production parameter is exited.
+func (s *BaseFeatureListener) ExitParameter(ctx *ParameterContext) {}
 
-// EnterTag is called when production tag is entered.
-func (s *BaseFeatureListener) EnterTag(ctx *TagContext) {}
+// EnterContentNoQuotes is called when production contentNoQuotes is entered.
+func (s *BaseFeatureListener) EnterContentNoQuotes(ctx *ContentNoQuotesContext) {}
 
-// ExitTag is called when production tag is exited.
-func (s *BaseFeatureListener) ExitTag(ctx *TagContext) {}
+// ExitContentNoQuotes is called when production contentNoQuotes is exited.
+func (s *BaseFeatureListener) ExitContentNoQuotes(ctx *ContentNoQuotesContext) {}
 
-// EnterComment is called when production comment is entered.
-func (s *BaseFeatureListener) EnterComment(ctx *CommentContext) {}
+// EnterContentNoPipes is called when production contentNoPipes is entered.
+func (s *BaseFeatureListener) EnterContentNoPipes(ctx *ContentNoPipesContext) {}
 
-// ExitComment is called when production comment is exited.
-func (s *BaseFeatureListener) ExitComment(ctx *CommentContext) {}
+// ExitContentNoPipes is called when production contentNoPipes is exited.
+func (s *BaseFeatureListener) ExitContentNoPipes(ctx *ContentNoPipesContext) {}
 
-// EnterComment_line is called when production comment_line is entered.
-func (s *BaseFeatureListener) EnterComment_line(ctx *Comment_lineContext) {}
+// EnterContent is called when production content is entered.
+func (s *BaseFeatureListener) EnterContent(ctx *ContentContext) {}
 
-// ExitComment_line is called when production comment_line is exited.
-func (s *BaseFeatureListener) ExitComment_line(ctx *Comment_lineContext) {}
-
-// EnterLine_to_eol is called when production line_to_eol is entered.
-func (s *BaseFeatureListener) EnterLine_to_eol(ctx *Line_to_eolContext) {}
-
-// ExitLine_to_eol is called when production line_to_eol is exited.
-func (s *BaseFeatureListener) ExitLine_to_eol(ctx *Line_to_eolContext) {}
-
-// EnterFeature_keyword is called when production feature_keyword is entered.
-func (s *BaseFeatureListener) EnterFeature_keyword(ctx *Feature_keywordContext) {}
-
-// ExitFeature_keyword is called when production feature_keyword is exited.
-func (s *BaseFeatureListener) ExitFeature_keyword(ctx *Feature_keywordContext) {}
-
-// EnterScenario_keyword is called when production scenario_keyword is entered.
-func (s *BaseFeatureListener) EnterScenario_keyword(ctx *Scenario_keywordContext) {}
-
-// ExitScenario_keyword is called when production scenario_keyword is exited.
-func (s *BaseFeatureListener) ExitScenario_keyword(ctx *Scenario_keywordContext) {}
-
-// EnterScenario_outline_keyword is called when production scenario_outline_keyword is entered.
-func (s *BaseFeatureListener) EnterScenario_outline_keyword(ctx *Scenario_outline_keywordContext) {}
-
-// ExitScenario_outline_keyword is called when production scenario_outline_keyword is exited.
-func (s *BaseFeatureListener) ExitScenario_outline_keyword(ctx *Scenario_outline_keywordContext) {}
-
-// EnterStep_keyword is called when production step_keyword is entered.
-func (s *BaseFeatureListener) EnterStep_keyword(ctx *Step_keywordContext) {}
-
-// ExitStep_keyword is called when production step_keyword is exited.
-func (s *BaseFeatureListener) ExitStep_keyword(ctx *Step_keywordContext) {}
-
-// EnterExamples_keyword is called when production examples_keyword is entered.
-func (s *BaseFeatureListener) EnterExamples_keyword(ctx *Examples_keywordContext) {}
-
-// ExitExamples_keyword is called when production examples_keyword is exited.
-func (s *BaseFeatureListener) ExitExamples_keyword(ctx *Examples_keywordContext) {}
+// ExitContent is called when production content is exited.
+func (s *BaseFeatureListener) ExitContent(ctx *ContentContext) {}
