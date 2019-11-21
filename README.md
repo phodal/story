@@ -15,10 +15,10 @@ Usage:
   story [command]
 
 Available Commands:
-  create      create show
+  create      Create a stroy
   help        Help about any command
-  list        list the stories
-  sync        sync the stories
+  list        List the stories
+  sync        Sync the stories
 
 Flags:
       --config string   config file (default is $HOME/.cobra.yaml)

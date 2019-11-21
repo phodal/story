@@ -18,7 +18,6 @@ var (
 	rootCmd = &cobra.Command{
 		Use:   "story",
 		Short: "Kanban as code in projects.",
-		Long:  `story`,
 		Args: func(cmd *cobra.Command, args []string) error {
 			userName := viper.GetString("user")
 			if userName == "" {
@@ -49,7 +48,7 @@ var (
 
 	createCmd = &cobra.Command{
 		Use:   "create",
-		Short: "create show",
+		Short: "Create a story",
 		Run: func(cmd *cobra.Command, args []string) {
 			_ = os.MkdirAll("stories", os.ModePerm)
 			CreateStory(args[0])
@@ -58,7 +57,7 @@ var (
 
 	syncCmd = &cobra.Command{
 		Use:   "sync",
-		Short: "sync the stories",
+		Short: "Sync the stories",
 		Run: func(cmd *cobra.Command, args []string) {
 			SyncStory()
 		},
@@ -66,7 +65,7 @@ var (
 
 	showCmd = &cobra.Command{
 		Use:   "list",
-		Short: "list the stories",
+		Short: "List the stories",
 		Run: func(cmd *cobra.Command, args []string) {
 			stories := ListStory()
 
