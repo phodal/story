@@ -42,14 +42,11 @@ var storyTemplate = `# id: {{.Id}}
 @math
 功能:{{.Title}}
 
-  背景:
-    你好啊®
-
-  场景: 大纲
-    假设: 我需要
-    当: 我blbla
-    并且: 这很不错
-    那么: 就好了
+  场景:
+    假设:
+    当:
+    并且:
+    那么:
 `
 
 func SyncStory() {
