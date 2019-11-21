@@ -1,8 +1,8 @@
 package story
 
 import (
-	. "../parser"
 	"encoding/json"
+	. "github.com/phodal/story/parser"
 	"io/ioutil"
 	"log"
 	"os"

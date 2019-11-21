@@ -1,11 +1,11 @@
 package cmd
 
 import (
-	. "../story"
 	"errors"
 	"fmt"
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/olekukonko/tablewriter"
+	. "github.com/phodal/story/story"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"log"
