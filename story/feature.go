@@ -5,11 +5,14 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
+	"os"
 	"strings"
 )
 
+var storiesPath = "stories/"
+
 func GetFeatureFileNameById(id string) string {
-	files, err := ioutil.ReadDir("stories/")
+	files, err := ioutil.ReadDir(storiesPath)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -24,18 +27,37 @@ func GetFeatureFileNameById(id string) string {
 }
 
 func GetFeaturesByPath() []StoryModel {
-	files, err := ioutil.ReadDir("stories/")
+	files, err := ioutil.ReadDir(storiesPath)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	var stories []StoryModel
 	for _, f := range files {
-		feature := ParseFeature("stories/" + f.Name())
+		feature := ParseFeature(storiesPath + f.Name())
 		stories = append(stories, feature)
 	}
 
 	return stories
+}
+
+func SyncFeatures() {
+	files, err := ioutil.ReadDir(storiesPath)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, f := range files {
+		feature := ParseFeature(storiesPath + f.Name())
+
+		reallyFileName := BuildFileName(feature.Id, feature.Title)
+		if f.Name() != reallyFileName {
+			err := os.Rename(storiesPath+f.Name(), storiesPath+reallyFileName)
+			if err != nil {
+				log.Fatal(err)
+			}
+		}
+	}
 }
 
 func ParseFeature(path string) StoryModel {

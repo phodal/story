@@ -30,7 +30,7 @@ var storyTemplate = infoTemplate + `
 var commentPosition = CommentPosition{}
 
 func SyncStory() {
-
+	SyncFeatures()
 }
 
 func ListStory() []StoryModel {

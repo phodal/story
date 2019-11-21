@@ -61,6 +61,11 @@ var (
 			if pick != "" && status != "" {
 				ChangeStoryStatus(pick, status)
 			}
+
+			sync := cmd.Flag("sync").Value.String()
+			if sync != "" {
+				SyncStory()
+			}
 		},
 	}
 )
@@ -83,6 +88,7 @@ func init() {
 	rootCmd.PersistentFlags().StringP("status", "s", "", "change status of story")
 	rootCmd.PersistentFlags().StringP("journal", "j", "", "show user journal")
 	rootCmd.PersistentFlags().StringP("user", "u", "", "list author")
+	rootCmd.PersistentFlags().StringP("sync", "y", "", "sync story")
 
 	viper.BindPFlag("user", rootCmd.PersistentFlags().Lookup("user"))
 }
