@@ -52,12 +52,7 @@ var (
 		Short: "create show",
 		Run: func(cmd *cobra.Command, args []string) {
 			_ = os.MkdirAll("stories", os.ModePerm)
-
-			create := cmd.Flag("create").Value.String()
-			if create != "" {
-				CreateStory(create)
-				return
-			}
+			CreateStory(args[0])
 		},
 	}
 
