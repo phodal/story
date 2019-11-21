@@ -1,23 +1,68 @@
 grammar feature;
 
-compilationUnit: fieldDeclaration EOF;
+compilationUnit: NEWLINE* comment? NEWLINE* SPACE* tags? NEWLINE* SPACE* feature_keyword SPACE* line_to_eol NEWLINE+ (feature_elements .)* feature_elements EOF;
 
-fieldDeclaration
-    :
+feature_elements
+	:	(scenario_outline | scenario)* ;
 
-    ;
+scenario
+	:	comment? tags? scenario_keyword SPACE* line_to_eol NEWLINE+ steps
+	;
 
-WS
-   : [ \r\n\t] + -> skip
-   ;
+scenario_outline
+	:	comment? tags? scenario_outline_keyword SPACE* line_to_eol NEWLINE+ steps examples_sections
+	;
 
-fragment LetterOrDigit
-    : Letter
-    | [0-9]
-    ;
+steps 	:	step* ;
 
-fragment Letter
-    : [a-zA-Z$_] // these are the "java letters" below 0x7F
-    | ~[\u0000-\u007F\uD800-\uDBFF] // covers all characters above 0x7F which are not a surrogate
-    | [\uD800-\uDBFF] [\uDC00-\uDFFF] // covers UTF-16 surrogate pairs encodings for U+10000 to U+10FFFF
-    ;
+step	:	step_keyword SPACE* line_to_eol NEWLINE+ multiline_arg? ;
+
+examples_sections
+	:	examples+ ;
+
+examples
+	:	examples_keyword SPACE* line_to_eol NEWLINE+ table ;
+
+multiline_arg
+	:	table ;
+
+table 	:	table_row+ ;
+
+table_row
+	: 	SPACE* '|' (cell '|')+ SPACE* (NEWLINE+) ;
+
+cell	: 	(~('|' | NEWLINE) .)* ;
+
+tags	: 	tag (SPACE tag)* NEWLINE+ ;
+
+tag 	:  	'@' tag_name=ID ;
+
+comment
+	: 	(comment_line NEWLINE)* ;
+
+comment_line
+	: 	'#' line_to_eol;
+
+line_to_eol
+	: 	(~NEWLINE)* ;
+
+feature_keyword
+	:	'Feature' ':'? ;
+
+scenario_keyword
+	: 	'Scenario' ':'? ;
+
+scenario_outline_keyword
+	: 	'Scenario Outline' ':'? ;
+
+step_keyword
+	: 	'Given' | 'When' | 'Then' | 'And' | 'But' ;
+
+examples_keyword
+	: 	'Examples' ':'? ;
+
+ID : 	('a'..'z'|'A'..'Z'|'_')+ ;
+
+NEWLINE:  	(('\r')? '\n' )+ ;
+
+SPACE: 	(' '|'\t')+ {skip();};
