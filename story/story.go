@@ -1,12 +1,14 @@
 package story
 
 import (
+	"crypto/md5"
 	"encoding/json"
 	"fmt"
 	"github.com/teris-io/shortid"
+	"hash"
 	"log"
 	"os"
-	"strings"
+	"regexp"
 	"text/template"
 	"time"
 )
@@ -27,9 +29,11 @@ type StoryModel struct {
 	Priority     string `json:"priority,omitempty"`
 	Author       string `json:"author,omitempty"`
 	Status       string `json:"status,omitempty"`
+	Hash         string
 }
 
 var driver *Driver
+var fileMd5 hash.Hash
 
 var storyTemplate = `作为
 
@@ -40,6 +44,7 @@ var storyTemplate = `作为
 
 func InitStory() {
 	driver, _ = NewZhu("stories/db")
+	fileMd5 = md5.New()
 
 	SyncStory()
 }
@@ -49,9 +54,9 @@ func SyncStory() {
 }
 
 func ListStory() []StoryModel {
-	storyList, error := driver.ReadAll("stories")
-	if error != nil {
-		log.Fatal(error)
+	storyList, err := driver.ReadAll("stories")
+	if err != nil {
+		log.Fatal(err)
 	}
 
 	stories := []StoryModel{}
@@ -67,19 +72,21 @@ func ListStory() []StoryModel {
 }
 
 func CreateStory(content string) {
-	u1 := buildStoryId()
+	storyId := buildStoryId()
 
 	date := &StoryDate{time.Now(), time.Now()}
-	story := &StoryModel{u1, content, "", "", "", *date, "", "", "", ""}
+	story := &StoryModel{storyId, content, "", "", "", *date, "", "", "", "", ""}
 
 	t, _ := template.New("story").Parse(storyTemplate)
-	fileName := u1 + "-" + updateFileName(content)
-	file, err := os.Create("stories/docs/" + fileName + ".md")
+	filePath := getFilePath(storyId, content)
+	file, err := os.Create(filePath)
+	hashValue, err := Md5SumFile(filePath)
 	if err != nil {
 		log.Println("create file: ", err)
 		return
 	}
 
+	story.Hash = string(hashValue[:])
 	err = t.Execute(file, &story)
 	if err != nil {
 		log.Println("template file: ", err)
@@ -92,8 +99,15 @@ func CreateStory(content string) {
 	}
 }
 
+func getFilePath(u1 string, content string) string {
+	fileName := u1 + "-" + updateFileName(content)
+	filePath := "stories/docs/" + fileName + ".md"
+	return filePath
+}
+
 func updateFileName(name string) string {
-	return strings.ReplaceAll(name, " ", "")
+	rex := regexp.MustCompile(`[，,。 ！？]`)
+	return rex.ReplaceAllString(name, "")
 }
 
 func buildStoryId() string {
