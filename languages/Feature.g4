@@ -63,11 +63,11 @@ content: (Char|LBracket) (Char|LBracket|RBracket|At|Quote|Pipe|Space)*;
 
 comment: '#' Space* commentText NewLine;
 
-commentText: IDENTIFIER ':' Space* commentValue;
+commentText: IDENTIFIER ':' Space* commentValue?;
 
 commentValue: IDENTIFIER;
 
-IDENTIFIER: LetterOrDigit LetterOrDigit*;
+IDENTIFIER: LetterOrDigit (LetterOrDigit Space?)*;
 
 EmptyLine: NewLine Space+ NewLine -> skip;
 

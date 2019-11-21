@@ -52,8 +52,8 @@ func BuildFileName(id string, content string) string {
 }
 
 func UpdateFileName(name string) string {
-	rex := regexp.MustCompile(`[，,。 ！？]`)
-	return rex.ReplaceAllString(name, "")
+	rex := regexp.MustCompile(`[ ，,。！？]`)
+	return rex.ReplaceAllString(name, "-")
 }
 
 func UpdateStoryByFilePath(filePath string, model *StoryModel) {
