@@ -29,14 +29,20 @@ var (
 		Run: func(cmd *cobra.Command, args []string) {
 			userName := viper.GetString("user")
 
-			pick := cmd.Flag("pick").Value.String()
-			if pick != "" {
-				PickStory(pick, userName)
+			if cmd.Flag("pick") != nil {
+				pick := cmd.Flag("pick").Value.String()
+				if pick != "" {
+					PickStory(pick, userName)
+				}
 			}
 
-			status := cmd.Flag("status").Value.String()
-			if pick != "" && status != "" {
-				ChangeStoryStatus(pick, status)
+			if cmd.Flag("pick") != nil && cmd.Flag("status") != nil {
+				pick := cmd.Flag("pick").Value.String()
+				status := cmd.Flag("status").Value.String()
+				if pick != "" && status != "" {
+					ChangeStoryStatus(pick, status)
+				}
+
 			}
 		},
 	}
