@@ -2,6 +2,7 @@ package story
 
 import (
 	. "../parser"
+	"bytes"
 	"encoding/json"
 	"github.com/teris-io/shortid"
 	"io/ioutil"
@@ -32,13 +33,15 @@ type StoryModel struct {
 	Hash         string
 }
 
-var storyTemplate = `# id: {{.Id}}
+var infoTemplate = `# id: {{.Id}}
 # startDate: {{.StartDate}}
 # endDate: {{.EndDate}}
 # priority: {{.Priority}}
 # status: {{.Status}}
 # author: {{.Author}}
-# language: zh-CN
+# language: zh-CN`
+
+var storyTemplate = infoTemplate + `
 @math
 功能:{{.Title}}
 
@@ -48,6 +51,8 @@ var storyTemplate = `# id: {{.Id}}
     并且:
     那么:
 `
+
+var commentPosition = CommentPosition{}
 
 func SyncStory() {
 
@@ -118,12 +123,7 @@ func PickStory(id string, userName string) {
 	story = parseFeature(filePath)
 	story.Author = userName
 
-	file, e := os.OpenFile(filePath, os.O_WRONLY, os.ModeAppend)
-	if e != nil {
-		log.Fatal("open file error %s:", e)
-		return
-	}
-	saveStory(file, &story)
+	updateStory(filePath, &story)
 }
 
 func ChangeStoryStatus(id string, status string) {
@@ -139,12 +139,39 @@ func ChangeStoryStatus(id string, status string) {
 	story.Status = status
 	story.EndDate = getNow()
 
-	file, e := os.OpenFile(filePath, os.O_WRONLY, os.ModeAppend)
-	if e != nil {
-		log.Fatal("open file error %s:", e)
+	updateStory(filePath, &story)
+}
+
+func updateStory(filePath string, model *StoryModel) {
+	tpl, err := template.New("info").Parse(infoTemplate)
+	if err != nil {
+		log.Fatal(err)
 		return
 	}
-	saveStory(file, &story)
+
+	var buffer bytes.Buffer
+	if err := tpl.Execute(&buffer, model); err != nil {
+		log.Fatal(err)
+		return
+	}
+
+	result := buffer.String()
+
+	input, err := ioutil.ReadFile(filePath)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	lines := strings.Split(string(input), "\n")
+	newLines := make([]string, len(lines)-commentPosition.End)
+
+	copy(newLines, lines[commentPosition.End:])
+
+	output := result + "\n" + strings.Join(newLines, "\n")
+	err = ioutil.WriteFile(filePath, []byte(output), 0644)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 func getNow() string {
@@ -169,7 +196,9 @@ func getFeatureFileNameById(id string) string {
 func parseFeature(path string) StoryModel {
 	var storyModel StoryModel
 	app := NewFeatureApp()
-	results := app.Start(path)
+	commentStruct := app.Start(path)
+	results := commentStruct.CommentsMap
+	commentPosition = commentStruct.CommentPosition
 	jsonStr, err := json.Marshal(results)
 	if err != nil {
 		log.Fatal(err)

@@ -5,22 +5,34 @@ import (
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 )
 
+type CommentStruct struct {
+	CommentsMap map[string]string
+	CommentPosition
+}
+
+var commentStruct CommentStruct
+
 func NewFeatureApp() *FeatureApp {
+	commentStruct = *&CommentStruct{}
 	return &FeatureApp{}
 }
 
 type FeatureApp struct {
 }
 
-func (j *FeatureApp) Start(path string) map[string]string {
+func (j *FeatureApp) Start(path string) CommentStruct {
 	context := (*FeatureApp)(nil).ProcessFile(path).Feature()
 	listener := NewFeatureAppListener()
 
 	antlr.NewParseTreeWalker().Walk(listener, context)
 
-	commentsMap := listener.getComments()
+	commentStruct.CommentsMap = listener.getComments()
 
-	return commentsMap
+	position := listener.getCommentPosition()
+	commentStruct.Start = position.Start
+	commentStruct.End = position.End
+
+	return commentStruct
 }
 
 func (j *FeatureApp) ProcessFile(path string) *FeatureParser {
