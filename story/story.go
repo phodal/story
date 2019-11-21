@@ -2,14 +2,9 @@ package story
 
 import (
 	. "../parser"
-	"bytes"
-	"encoding/json"
 	"github.com/teris-io/shortid"
-	"io/ioutil"
 	"log"
 	"os"
-	"regexp"
-	"strings"
 	"text/template"
 	"time"
 )
@@ -71,7 +66,7 @@ func CreateStory(content string) {
 	date := &StoryDate{getNow(), getNow()}
 	story := &StoryModel{storyId, content, "", "", "", *date, "", "", "", "", ""}
 
-	filePath := getFilePath(storyId, content)
+	filePath := GetFilePath(storyId, content)
 	file, err := os.Create(filePath)
 	hashValue, err := Md5SumFile(filePath)
 	if err != nil {
@@ -96,17 +91,6 @@ func saveStory(file *os.File, story *StoryModel) {
 	}
 }
 
-func getFilePath(u1 string, content string) string {
-	fileName := u1 + "-" + updateFileName(content)
-	filePath := "stories/" + fileName + ".feature"
-	return filePath
-}
-
-func updateFileName(name string) string {
-	rex := regexp.MustCompile(`[，,。 ！？]`)
-	return rex.ReplaceAllString(name, "")
-}
-
 func buildStoryId() string {
 	str, _ := shortid.Generate()
 	return str
@@ -115,100 +99,35 @@ func buildStoryId() string {
 func PickStory(id string, userName string) {
 	var story StoryModel
 
-	fileName := getFeatureFileNameById(id)
+	fileName := GetFeatureFileNameById(id)
 	if fileName == "" {
 		log.Fatal("error id, %s", id)
 	}
 
 	filePath := "stories/" + fileName
-	story = parseFeature(filePath)
+	story = ParseFeature(filePath)
 	story.Author = userName
 
-	updateStory(filePath, &story)
+	UpdateStoryByFilePath(filePath, &story)
 }
 
 func ChangeStoryStatus(id string, status string) {
 	var story StoryModel
 
-	fileName := getFeatureFileNameById(id)
+	fileName := GetFeatureFileNameById(id)
 	if fileName == "" {
 		log.Fatal("error id, %s", id)
 	}
 
 	filePath := "stories/" + fileName
-	story = parseFeature(filePath)
+	story = ParseFeature(filePath)
 	story.Status = status
 	story.EndDate = getNow()
 
-	updateStory(filePath, &story)
-}
-
-func updateStory(filePath string, model *StoryModel) {
-	tpl, err := template.New("info").Parse(infoTemplate)
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
-
-	var buffer bytes.Buffer
-	if err := tpl.Execute(&buffer, model); err != nil {
-		log.Fatal(err)
-		return
-	}
-
-	result := buffer.String()
-
-	writeNewTemplateToFile(filePath, result)
-}
-
-func writeNewTemplateToFile(filePath string, result string) {
-	input, err := ioutil.ReadFile(filePath)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	lines := strings.Split(string(input), "\n")
-	newLines := make([]string, len(lines)-commentPosition.End)
-	copy(newLines, lines[commentPosition.End:])
-	output := result + "\n" + strings.Join(newLines, "\n")
-	err = ioutil.WriteFile(filePath, []byte(output), 0644)
-	if err != nil {
-		log.Fatalln(err)
-	}
+	UpdateStoryByFilePath(filePath, &story)
 }
 
 func getNow() string {
 	return time.Now().UTC().Format(time.RFC3339)
 }
 
-func getFeatureFileNameById(id string) string {
-	files, err := ioutil.ReadDir("stories/")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	for _, f := range files {
-		if strings.Contains(f.Name(), id) {
-			return f.Name()
-		}
-	}
-
-	return ""
-}
-
-func parseFeature(path string) StoryModel {
-	var storyModel StoryModel
-	app := NewFeatureApp()
-	commentStruct := app.Start(path)
-	results := commentStruct.CommentsMap
-	commentPosition = commentStruct.CommentPosition
-	jsonStr, err := json.Marshal(results)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	storyModel.StartDate = results["startDate"]
-	storyModel.EndDate = results["endDate"]
-
-	_ = json.Unmarshal(jsonStr, &storyModel)
-	return storyModel
-}
