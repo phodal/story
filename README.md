@@ -31,19 +31,19 @@ Use "story [command] --help" for more information about a command.
 ### Create Story
 
 ```
-go run main.go create 'add docs to README'
+story create 'add docs to README'
 ```
 
 ### Sync Story
 
 ```
-go run main.go sync
+story sync
 ```
 
 ### list Stories
 
 ```
-go run main.go list
+story list
 ```
 
 results:
@@ -60,3 +60,17 @@ results:
 +-----------+--------------------------------+----------------------+--------+--------+
 ```
 
+### Update story status
+
+```
+story -p CYJlzObWR -u phodal -s done
+```
+
+
+
+License
+---
+
+[![Phodal's Idea](http://brand.phodal.com/shields/idea-small.svg)](http://ideas.phodal.com/)
+
+@ 2019 A [Phodal Huang](https://www.phodal.com)'s [Idea](http://github.com/phodal/ideas).  This code is distributed under the MIT license. See `LICENSE` in this directory.

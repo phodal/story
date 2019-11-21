@@ -98,6 +98,8 @@ func init() {
 	cobra.OnInitialize(initConfig)
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.cobra.yaml)")
+	rootCmd.PersistentFlags().StringP("pick", "p", "", "pick story")
+	rootCmd.PersistentFlags().StringP("status", "s", "", "set story status")
 	rootCmd.PersistentFlags().StringP("user", "u", "", "set author")
 
 	viper.BindPFlag("user", rootCmd.PersistentFlags().Lookup("user"))
