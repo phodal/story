@@ -2,10 +2,8 @@ package story
 
 import (
 	. "../parser"
-	"github.com/teris-io/shortid"
 	"log"
 	"os"
-	"text/template"
 	"time"
 )
 
@@ -42,7 +40,7 @@ func ListStory() []StoryModel {
 }
 
 func CreateStory(content string) {
-	storyId := buildStoryId()
+	storyId := GenerateId()
 
 	date := &StoryDate{getNow(), getNow()}
 	story := &StoryModel{storyId, content, "", "", "", *date, "", "", "", "", ""}
@@ -56,25 +54,7 @@ func CreateStory(content string) {
 	}
 
 	story.Hash = string(hashValue[:])
-	saveStory(file, story)
-}
-
-func saveStory(file *os.File, story *StoryModel) {
-	t, err := template.New("story").Parse(storyTemplate)
-	if err != nil {
-		log.Println("template error: ", err)
-		return
-	}
-	err = t.Execute(file, &story)
-	if err != nil {
-		log.Println("template file: ", err)
-		return
-	}
-}
-
-func buildStoryId() string {
-	str, _ := shortid.Generate()
-	return str
+	SaveStoryToFile(file, story)
 }
 
 func PickStory(id string, userName string) {

@@ -85,3 +85,16 @@ func WriteNewTemplateToFile(filePath string, result string) {
 	}
 }
 
+func SaveStoryToFile(file *os.File, story *StoryModel) {
+	t, err := template.New("story").Parse(storyTemplate)
+	if err != nil {
+		log.Println("template error: ", err)
+		return
+	}
+	err = t.Execute(file, &story)
+	if err != nil {
+		log.Println("template file: ", err)
+		return
+	}
+}
+
