@@ -64,6 +64,10 @@ func (v *BaseFeatureVisitor) VisitThen(ctx *ThenContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseFeatureVisitor) VisitExample(ctx *ExampleContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseFeatureVisitor) VisitStep(ctx *StepContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -73,6 +77,14 @@ func (v *BaseFeatureVisitor) VisitStepContent(ctx *StepContentContext) interface
 }
 
 func (v *BaseFeatureVisitor) VisitStepText(ctx *StepTextContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseFeatureVisitor) VisitTable(ctx *TableContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseFeatureVisitor) VisitTableHeader(ctx *TableHeaderContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -97,5 +109,13 @@ func (v *BaseFeatureVisitor) VisitContentNoPipes(ctx *ContentNoPipesContext) int
 }
 
 func (v *BaseFeatureVisitor) VisitContent(ctx *ContentContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseFeatureVisitor) VisitComment(ctx *CommentContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseFeatureVisitor) VisitCommentText(ctx *CommentTextContext) interface{} {
 	return v.VisitChildren(ctx)
 }

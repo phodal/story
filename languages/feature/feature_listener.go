@@ -50,6 +50,9 @@ type FeatureListener interface {
 	// EnterThen is called when entering the then production.
 	EnterThen(c *ThenContext)
 
+	// EnterExample is called when entering the example production.
+	EnterExample(c *ExampleContext)
+
 	// EnterStep is called when entering the step production.
 	EnterStep(c *StepContext)
 
@@ -58,6 +61,12 @@ type FeatureListener interface {
 
 	// EnterStepText is called when entering the stepText production.
 	EnterStepText(c *StepTextContext)
+
+	// EnterTable is called when entering the table production.
+	EnterTable(c *TableContext)
+
+	// EnterTableHeader is called when entering the tableHeader production.
+	EnterTableHeader(c *TableHeaderContext)
 
 	// EnterRow is called when entering the row production.
 	EnterRow(c *RowContext)
@@ -76,6 +85,12 @@ type FeatureListener interface {
 
 	// EnterContent is called when entering the content production.
 	EnterContent(c *ContentContext)
+
+	// EnterComment is called when entering the comment production.
+	EnterComment(c *CommentContext)
+
+	// EnterCommentText is called when entering the commentText production.
+	EnterCommentText(c *CommentTextContext)
 
 	// ExitFeature is called when exiting the feature production.
 	ExitFeature(c *FeatureContext)
@@ -119,6 +134,9 @@ type FeatureListener interface {
 	// ExitThen is called when exiting the then production.
 	ExitThen(c *ThenContext)
 
+	// ExitExample is called when exiting the example production.
+	ExitExample(c *ExampleContext)
+
 	// ExitStep is called when exiting the step production.
 	ExitStep(c *StepContext)
 
@@ -127,6 +145,12 @@ type FeatureListener interface {
 
 	// ExitStepText is called when exiting the stepText production.
 	ExitStepText(c *StepTextContext)
+
+	// ExitTable is called when exiting the table production.
+	ExitTable(c *TableContext)
+
+	// ExitTableHeader is called when exiting the tableHeader production.
+	ExitTableHeader(c *TableHeaderContext)
 
 	// ExitRow is called when exiting the row production.
 	ExitRow(c *RowContext)
@@ -145,4 +169,10 @@ type FeatureListener interface {
 
 	// ExitContent is called when exiting the content production.
 	ExitContent(c *ContentContext)
+
+	// ExitComment is called when exiting the comment production.
+	ExitComment(c *CommentContext)
+
+	// ExitCommentText is called when exiting the commentText production.
+	ExitCommentText(c *CommentTextContext)
 }

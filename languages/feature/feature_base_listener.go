@@ -105,6 +105,12 @@ func (s *BaseFeatureListener) EnterThen(ctx *ThenContext) {}
 // ExitThen is called when production then is exited.
 func (s *BaseFeatureListener) ExitThen(ctx *ThenContext) {}
 
+// EnterExample is called when production example is entered.
+func (s *BaseFeatureListener) EnterExample(ctx *ExampleContext) {}
+
+// ExitExample is called when production example is exited.
+func (s *BaseFeatureListener) ExitExample(ctx *ExampleContext) {}
+
 // EnterStep is called when production step is entered.
 func (s *BaseFeatureListener) EnterStep(ctx *StepContext) {}
 
@@ -122,6 +128,18 @@ func (s *BaseFeatureListener) EnterStepText(ctx *StepTextContext) {}
 
 // ExitStepText is called when production stepText is exited.
 func (s *BaseFeatureListener) ExitStepText(ctx *StepTextContext) {}
+
+// EnterTable is called when production table is entered.
+func (s *BaseFeatureListener) EnterTable(ctx *TableContext) {}
+
+// ExitTable is called when production table is exited.
+func (s *BaseFeatureListener) ExitTable(ctx *TableContext) {}
+
+// EnterTableHeader is called when production tableHeader is entered.
+func (s *BaseFeatureListener) EnterTableHeader(ctx *TableHeaderContext) {}
+
+// ExitTableHeader is called when production tableHeader is exited.
+func (s *BaseFeatureListener) ExitTableHeader(ctx *TableHeaderContext) {}
 
 // EnterRow is called when production row is entered.
 func (s *BaseFeatureListener) EnterRow(ctx *RowContext) {}
@@ -158,3 +176,15 @@ func (s *BaseFeatureListener) EnterContent(ctx *ContentContext) {}
 
 // ExitContent is called when production content is exited.
 func (s *BaseFeatureListener) ExitContent(ctx *ContentContext) {}
+
+// EnterComment is called when production comment is entered.
+func (s *BaseFeatureListener) EnterComment(ctx *CommentContext) {}
+
+// ExitComment is called when production comment is exited.
+func (s *BaseFeatureListener) ExitComment(ctx *CommentContext) {}
+
+// EnterCommentText is called when production commentText is entered.
+func (s *BaseFeatureListener) EnterCommentText(ctx *CommentTextContext) {}
+
+// ExitCommentText is called when production commentText is exited.
+func (s *BaseFeatureListener) ExitCommentText(ctx *CommentTextContext) {}

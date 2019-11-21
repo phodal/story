@@ -18,6 +18,8 @@ func (j *FeatureApp) Start(path string) {
 	listener := NewFeatureAppListener()
 
 	antlr.NewParseTreeWalker().Walk(listener, context)
+
+	//getComments := listener.getComments()
 }
 
 func (j *FeatureApp) ProcessFile(path string) *FeatureParser {

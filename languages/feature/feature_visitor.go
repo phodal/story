@@ -50,6 +50,9 @@ type FeatureVisitor interface {
 	// Visit a parse tree produced by FeatureParser#then.
 	VisitThen(ctx *ThenContext) interface{}
 
+	// Visit a parse tree produced by FeatureParser#example.
+	VisitExample(ctx *ExampleContext) interface{}
+
 	// Visit a parse tree produced by FeatureParser#step.
 	VisitStep(ctx *StepContext) interface{}
 
@@ -58,6 +61,12 @@ type FeatureVisitor interface {
 
 	// Visit a parse tree produced by FeatureParser#stepText.
 	VisitStepText(ctx *StepTextContext) interface{}
+
+	// Visit a parse tree produced by FeatureParser#table.
+	VisitTable(ctx *TableContext) interface{}
+
+	// Visit a parse tree produced by FeatureParser#tableHeader.
+	VisitTableHeader(ctx *TableHeaderContext) interface{}
 
 	// Visit a parse tree produced by FeatureParser#row.
 	VisitRow(ctx *RowContext) interface{}
@@ -76,4 +85,10 @@ type FeatureVisitor interface {
 
 	// Visit a parse tree produced by FeatureParser#content.
 	VisitContent(ctx *ContentContext) interface{}
+
+	// Visit a parse tree produced by FeatureParser#comment.
+	VisitComment(ctx *CommentContext) interface{}
+
+	// Visit a parse tree produced by FeatureParser#commentText.
+	VisitCommentText(ctx *CommentTextContext) interface{}
 }

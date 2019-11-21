@@ -1,6 +1,7 @@
+// based on: https://github.com/cosenmarco/yabdd
 grammar Feature;
 
-feature: featureHeader featureBody;
+feature: comment* featureHeader featureBody;
 
 featureHeader: (Space | NewLine)* tags* Feature Space* content NewLine+;
 
@@ -8,7 +9,7 @@ featureBody: background? scenario+;
 
 background: (Space | NewLine)* tags* Background Space* content? (NewLine | EOF) blockBody (NewLine | EOF);
 
-blockBody: (given | when | or | then | and)*;
+blockBody: (given | when | or | then | and | example)*;
 
 scenario: (Space | NewLine)* tags* Space* Scenario Space* content (NewLine | EOF) blockBody;
 
@@ -32,13 +33,19 @@ and: (Space | NewLine)* And step;
 
 then: (Space | NewLine)* Then step;
 
+example: (Space | NewLine)* Examples step;
+
 // Steps and data tables
 
-step: Space* stepContent row*;
+step: Space* stepContent table?;
 
 stepContent: stepText (NewLine+ | EOF);
 
 stepText: (contentNoQuotes | Space | parameter)*;
+
+table: tableHeader row* ;
+
+tableHeader: Space* Pipe cell+ (NewLine+ | EOF);
 
 row: Space* Pipe cell+ (NewLine+ | EOF);
 
@@ -54,7 +61,12 @@ contentNoPipes: (Char|LBracket) (Char|LBracket|RBracket|At|Quote|Space)*;
 
 content: (Char|LBracket) (Char|LBracket|RBracket|At|Quote|Pipe|Space)*;
 
-Comment: Space* '#' .*? (NewLine | EOF) -> channel(2);
+comment: Space* '#' Space* commentText NewLine;
+
+commentText: .*?;
+
+IDENTIFIER: Letter LetterOrDigit*;
+
 EmptyLine: NewLine Space+ (NewLine | EOF) -> skip;
 
 And: 'And ' | '而且' | '并且' | '同时' ;
@@ -62,6 +74,7 @@ Or: 'Or ' | '或者';
 Given: 'Given ' | '假如' | '假设' | '假定' ;
 When: 'When ' | '当';
 Then: 'Then ' | '那么';
+Examples: 'Example ' | '例子';
 Background: ('Background' | '背景') [ ]* COLON;
 Scenario: ('Scenario' | '场景' | '剧本') [ ]* COLON;
 Feature: ('Feature' | '功能') [ ]* COLON;
@@ -76,3 +89,14 @@ Pipe: '|';
 Char: ~[ \t\r\n()]+?;
 
 fragment COLON: ':';
+
+fragment LetterOrDigit
+    : Letter
+    | [0-9]
+    ;
+
+fragment Letter
+    : [a-zA-Z$_] // these are the "java letters" below 0x7F
+    | ~[\u0000-\u007F\uD800-\uDBFF] // covers all characters above 0x7F which are not a surrogate
+    | [\uD800-\uDBFF] [\uDC00-\uDFFF] // covers UTF-16 surrogate pairs encodings for U+10000 to U+10FFFF
+    ;

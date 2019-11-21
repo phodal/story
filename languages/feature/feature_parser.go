@@ -16,164 +16,198 @@ var _ = reflect.Copy
 var _ = strconv.Itoa
 
 var parserATN = []uint16{
-	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 20, 308,
+	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 22, 380,
 	4, 2, 9, 2, 4, 3, 9, 3, 4, 4, 9, 4, 4, 5, 9, 5, 4, 6, 9, 6, 4, 7, 9, 7,
 	4, 8, 9, 8, 4, 9, 9, 9, 4, 10, 9, 10, 4, 11, 9, 11, 4, 12, 9, 12, 4, 13,
 	9, 13, 4, 14, 9, 14, 4, 15, 9, 15, 4, 16, 9, 16, 4, 17, 9, 17, 4, 18, 9,
 	18, 4, 19, 9, 19, 4, 20, 9, 20, 4, 21, 9, 21, 4, 22, 9, 22, 4, 23, 9, 23,
-	4, 24, 9, 24, 3, 2, 3, 2, 3, 2, 3, 3, 7, 3, 53, 10, 3, 12, 3, 14, 3, 56,
-	11, 3, 3, 3, 7, 3, 59, 10, 3, 12, 3, 14, 3, 62, 11, 3, 3, 3, 3, 3, 7, 3,
-	66, 10, 3, 12, 3, 14, 3, 69, 11, 3, 3, 3, 3, 3, 6, 3, 73, 10, 3, 13, 3,
-	14, 3, 74, 3, 4, 5, 4, 78, 10, 4, 3, 4, 6, 4, 81, 10, 4, 13, 4, 14, 4,
-	82, 3, 5, 7, 5, 86, 10, 5, 12, 5, 14, 5, 89, 11, 5, 3, 5, 7, 5, 92, 10,
-	5, 12, 5, 14, 5, 95, 11, 5, 3, 5, 3, 5, 7, 5, 99, 10, 5, 12, 5, 14, 5,
-	102, 11, 5, 3, 5, 5, 5, 105, 10, 5, 3, 5, 3, 5, 3, 5, 3, 5, 3, 6, 3, 6,
-	3, 6, 3, 6, 3, 6, 7, 6, 116, 10, 6, 12, 6, 14, 6, 119, 11, 6, 3, 7, 7,
-	7, 122, 10, 7, 12, 7, 14, 7, 125, 11, 7, 3, 7, 7, 7, 128, 10, 7, 12, 7,
-	14, 7, 131, 11, 7, 3, 7, 7, 7, 134, 10, 7, 12, 7, 14, 7, 137, 11, 7, 3,
-	7, 3, 7, 7, 7, 141, 10, 7, 12, 7, 14, 7, 144, 11, 7, 3, 7, 3, 7, 3, 7,
-	3, 7, 3, 8, 7, 8, 151, 10, 8, 12, 8, 14, 8, 154, 11, 8, 3, 8, 3, 8, 3,
-	8, 5, 8, 159, 10, 8, 3, 8, 7, 8, 162, 10, 8, 12, 8, 14, 8, 165, 11, 8,
-	3, 8, 3, 8, 3, 9, 7, 9, 170, 10, 9, 12, 9, 14, 9, 173, 11, 9, 3, 10, 3,
-	10, 3, 10, 3, 10, 3, 11, 7, 11, 180, 10, 11, 12, 11, 14, 11, 183, 11, 11,
-	3, 11, 3, 11, 3, 11, 3, 12, 7, 12, 189, 10, 12, 12, 12, 14, 12, 192, 11,
-	12, 3, 12, 3, 12, 3, 12, 3, 13, 7, 13, 198, 10, 13, 12, 13, 14, 13, 201,
-	11, 13, 3, 13, 3, 13, 3, 13, 3, 14, 7, 14, 207, 10, 14, 12, 14, 14, 14,
-	210, 11, 14, 3, 14, 3, 14, 3, 14, 3, 15, 7, 15, 216, 10, 15, 12, 15, 14,
-	15, 219, 11, 15, 3, 15, 3, 15, 3, 15, 3, 16, 7, 16, 225, 10, 16, 12, 16,
-	14, 16, 228, 11, 16, 3, 16, 3, 16, 7, 16, 232, 10, 16, 12, 16, 14, 16,
-	235, 11, 16, 3, 17, 3, 17, 6, 17, 239, 10, 17, 13, 17, 14, 17, 240, 3,
-	17, 5, 17, 244, 10, 17, 3, 18, 3, 18, 3, 18, 7, 18, 249, 10, 18, 12, 18,
-	14, 18, 252, 11, 18, 3, 19, 7, 19, 255, 10, 19, 12, 19, 14, 19, 258, 11,
-	19, 3, 19, 3, 19, 6, 19, 262, 10, 19, 13, 19, 14, 19, 263, 3, 19, 6, 19,
-	267, 10, 19, 13, 19, 14, 19, 268, 3, 19, 5, 19, 272, 10, 19, 3, 20, 7,
-	20, 275, 10, 20, 12, 20, 14, 20, 278, 11, 20, 3, 20, 3, 20, 3, 20, 3, 21,
-	3, 21, 3, 21, 3, 21, 3, 22, 3, 22, 7, 22, 289, 10, 22, 12, 22, 14, 22,
-	292, 11, 22, 3, 23, 3, 23, 7, 23, 296, 10, 23, 12, 23, 14, 23, 299, 11,
-	23, 3, 24, 3, 24, 7, 24, 303, 10, 24, 12, 24, 14, 24, 306, 11, 24, 3, 24,
-	3, 171, 2, 25, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30,
-	32, 34, 36, 38, 40, 42, 44, 46, 2, 8, 3, 2, 13, 14, 3, 3, 14, 14, 4, 2,
-	16, 16, 20, 20, 4, 2, 13, 13, 16, 20, 5, 2, 13, 13, 15, 18, 20, 20, 4,
-	2, 13, 13, 15, 20, 2, 327, 2, 48, 3, 2, 2, 2, 4, 54, 3, 2, 2, 2, 6, 77,
-	3, 2, 2, 2, 8, 87, 3, 2, 2, 2, 10, 117, 3, 2, 2, 2, 12, 123, 3, 2, 2, 2,
-	14, 152, 3, 2, 2, 2, 16, 171, 3, 2, 2, 2, 18, 174, 3, 2, 2, 2, 20, 181,
-	3, 2, 2, 2, 22, 190, 3, 2, 2, 2, 24, 199, 3, 2, 2, 2, 26, 208, 3, 2, 2,
-	2, 28, 217, 3, 2, 2, 2, 30, 226, 3, 2, 2, 2, 32, 236, 3, 2, 2, 2, 34, 250,
-	3, 2, 2, 2, 36, 256, 3, 2, 2, 2, 38, 276, 3, 2, 2, 2, 40, 282, 3, 2, 2,
-	2, 42, 286, 3, 2, 2, 2, 44, 293, 3, 2, 2, 2, 46, 300, 3, 2, 2, 2, 48, 49,
-	5, 4, 3, 2, 49, 50, 5, 6, 4, 2, 50, 3, 3, 2, 2, 2, 51, 53, 9, 2, 2, 2,
-	52, 51, 3, 2, 2, 2, 53, 56, 3, 2, 2, 2, 54, 52, 3, 2, 2, 2, 54, 55, 3,
-	2, 2, 2, 55, 60, 3, 2, 2, 2, 56, 54, 3, 2, 2, 2, 57, 59, 5, 14, 8, 2, 58,
-	57, 3, 2, 2, 2, 59, 62, 3, 2, 2, 2, 60, 58, 3, 2, 2, 2, 60, 61, 3, 2, 2,
-	2, 61, 63, 3, 2, 2, 2, 62, 60, 3, 2, 2, 2, 63, 67, 7, 12, 2, 2, 64, 66,
-	7, 13, 2, 2, 65, 64, 3, 2, 2, 2, 66, 69, 3, 2, 2, 2, 67, 65, 3, 2, 2, 2,
-	67, 68, 3, 2, 2, 2, 68, 70, 3, 2, 2, 2, 69, 67, 3, 2, 2, 2, 70, 72, 5,
-	46, 24, 2, 71, 73, 7, 14, 2, 2, 72, 71, 3, 2, 2, 2, 73, 74, 3, 2, 2, 2,
-	74, 72, 3, 2, 2, 2, 74, 75, 3, 2, 2, 2, 75, 5, 3, 2, 2, 2, 76, 78, 5, 8,
-	5, 2, 77, 76, 3, 2, 2, 2, 77, 78, 3, 2, 2, 2, 78, 80, 3, 2, 2, 2, 79, 81,
-	5, 12, 7, 2, 80, 79, 3, 2, 2, 2, 81, 82, 3, 2, 2, 2, 82, 80, 3, 2, 2, 2,
-	82, 83, 3, 2, 2, 2, 83, 7, 3, 2, 2, 2, 84, 86, 9, 2, 2, 2, 85, 84, 3, 2,
-	2, 2, 86, 89, 3, 2, 2, 2, 87, 85, 3, 2, 2, 2, 87, 88, 3, 2, 2, 2, 88, 93,
-	3, 2, 2, 2, 89, 87, 3, 2, 2, 2, 90, 92, 5, 14, 8, 2, 91, 90, 3, 2, 2, 2,
-	92, 95, 3, 2, 2, 2, 93, 91, 3, 2, 2, 2, 93, 94, 3, 2, 2, 2, 94, 96, 3,
-	2, 2, 2, 95, 93, 3, 2, 2, 2, 96, 100, 7, 10, 2, 2, 97, 99, 7, 13, 2, 2,
-	98, 97, 3, 2, 2, 2, 99, 102, 3, 2, 2, 2, 100, 98, 3, 2, 2, 2, 100, 101,
-	3, 2, 2, 2, 101, 104, 3, 2, 2, 2, 102, 100, 3, 2, 2, 2, 103, 105, 5, 46,
-	24, 2, 104, 103, 3, 2, 2, 2, 104, 105, 3, 2, 2, 2, 105, 106, 3, 2, 2, 2,
-	106, 107, 9, 3, 2, 2, 107, 108, 5, 10, 6, 2, 108, 109, 9, 3, 2, 2, 109,
-	9, 3, 2, 2, 2, 110, 116, 5, 20, 11, 2, 111, 116, 5, 22, 12, 2, 112, 116,
-	5, 24, 13, 2, 113, 116, 5, 28, 15, 2, 114, 116, 5, 26, 14, 2, 115, 110,
-	3, 2, 2, 2, 115, 111, 3, 2, 2, 2, 115, 112, 3, 2, 2, 2, 115, 113, 3, 2,
-	2, 2, 115, 114, 3, 2, 2, 2, 116, 119, 3, 2, 2, 2, 117, 115, 3, 2, 2, 2,
-	117, 118, 3, 2, 2, 2, 118, 11, 3, 2, 2, 2, 119, 117, 3, 2, 2, 2, 120, 122,
-	9, 2, 2, 2, 121, 120, 3, 2, 2, 2, 122, 125, 3, 2, 2, 2, 123, 121, 3, 2,
-	2, 2, 123, 124, 3, 2, 2, 2, 124, 129, 3, 2, 2, 2, 125, 123, 3, 2, 2, 2,
-	126, 128, 5, 14, 8, 2, 127, 126, 3, 2, 2, 2, 128, 131, 3, 2, 2, 2, 129,
-	127, 3, 2, 2, 2, 129, 130, 3, 2, 2, 2, 130, 135, 3, 2, 2, 2, 131, 129,
-	3, 2, 2, 2, 132, 134, 7, 13, 2, 2, 133, 132, 3, 2, 2, 2, 134, 137, 3, 2,
-	2, 2, 135, 133, 3, 2, 2, 2, 135, 136, 3, 2, 2, 2, 136, 138, 3, 2, 2, 2,
-	137, 135, 3, 2, 2, 2, 138, 142, 7, 11, 2, 2, 139, 141, 7, 13, 2, 2, 140,
-	139, 3, 2, 2, 2, 141, 144, 3, 2, 2, 2, 142, 140, 3, 2, 2, 2, 142, 143,
-	3, 2, 2, 2, 143, 145, 3, 2, 2, 2, 144, 142, 3, 2, 2, 2, 145, 146, 5, 46,
-	24, 2, 146, 147, 9, 3, 2, 2, 147, 148, 5, 10, 6, 2, 148, 13, 3, 2, 2, 2,
-	149, 151, 9, 2, 2, 2, 150, 149, 3, 2, 2, 2, 151, 154, 3, 2, 2, 2, 152,
-	150, 3, 2, 2, 2, 152, 153, 3, 2, 2, 2, 153, 155, 3, 2, 2, 2, 154, 152,
-	3, 2, 2, 2, 155, 156, 7, 18, 2, 2, 156, 158, 5, 16, 9, 2, 157, 159, 5,
-	18, 10, 2, 158, 157, 3, 2, 2, 2, 158, 159, 3, 2, 2, 2, 159, 163, 3, 2,
-	2, 2, 160, 162, 7, 13, 2, 2, 161, 160, 3, 2, 2, 2, 162, 165, 3, 2, 2, 2,
-	163, 161, 3, 2, 2, 2, 163, 164, 3, 2, 2, 2, 164, 166, 3, 2, 2, 2, 165,
-	163, 3, 2, 2, 2, 166, 167, 7, 14, 2, 2, 167, 15, 3, 2, 2, 2, 168, 170,
-	11, 2, 2, 2, 169, 168, 3, 2, 2, 2, 170, 173, 3, 2, 2, 2, 171, 172, 3, 2,
-	2, 2, 171, 169, 3, 2, 2, 2, 172, 17, 3, 2, 2, 2, 173, 171, 3, 2, 2, 2,
-	174, 175, 7, 16, 2, 2, 175, 176, 5, 46, 24, 2, 176, 177, 7, 17, 2, 2, 177,
-	19, 3, 2, 2, 2, 178, 180, 9, 2, 2, 2, 179, 178, 3, 2, 2, 2, 180, 183, 3,
-	2, 2, 2, 181, 179, 3, 2, 2, 2, 181, 182, 3, 2, 2, 2, 182, 184, 3, 2, 2,
-	2, 183, 181, 3, 2, 2, 2, 184, 185, 7, 7, 2, 2, 185, 186, 5, 30, 16, 2,
-	186, 21, 3, 2, 2, 2, 187, 189, 9, 2, 2, 2, 188, 187, 3, 2, 2, 2, 189, 192,
-	3, 2, 2, 2, 190, 188, 3, 2, 2, 2, 190, 191, 3, 2, 2, 2, 191, 193, 3, 2,
-	2, 2, 192, 190, 3, 2, 2, 2, 193, 194, 7, 8, 2, 2, 194, 195, 5, 30, 16,
-	2, 195, 23, 3, 2, 2, 2, 196, 198, 9, 2, 2, 2, 197, 196, 3, 2, 2, 2, 198,
-	201, 3, 2, 2, 2, 199, 197, 3, 2, 2, 2, 199, 200, 3, 2, 2, 2, 200, 202,
-	3, 2, 2, 2, 201, 199, 3, 2, 2, 2, 202, 203, 7, 6, 2, 2, 203, 204, 5, 30,
-	16, 2, 204, 25, 3, 2, 2, 2, 205, 207, 9, 2, 2, 2, 206, 205, 3, 2, 2, 2,
-	207, 210, 3, 2, 2, 2, 208, 206, 3, 2, 2, 2, 208, 209, 3, 2, 2, 2, 209,
-	211, 3, 2, 2, 2, 210, 208, 3, 2, 2, 2, 211, 212, 7, 5, 2, 2, 212, 213,
-	5, 30, 16, 2, 213, 27, 3, 2, 2, 2, 214, 216, 9, 2, 2, 2, 215, 214, 3, 2,
-	2, 2, 216, 219, 3, 2, 2, 2, 217, 215, 3, 2, 2, 2, 217, 218, 3, 2, 2, 2,
-	218, 220, 3, 2, 2, 2, 219, 217, 3, 2, 2, 2, 220, 221, 7, 9, 2, 2, 221,
-	222, 5, 30, 16, 2, 222, 29, 3, 2, 2, 2, 223, 225, 7, 13, 2, 2, 224, 223,
-	3, 2, 2, 2, 225, 228, 3, 2, 2, 2, 226, 224, 3, 2, 2, 2, 226, 227, 3, 2,
-	2, 2, 227, 229, 3, 2, 2, 2, 228, 226, 3, 2, 2, 2, 229, 233, 5, 32, 17,
-	2, 230, 232, 5, 36, 19, 2, 231, 230, 3, 2, 2, 2, 232, 235, 3, 2, 2, 2,
-	233, 231, 3, 2, 2, 2, 233, 234, 3, 2, 2, 2, 234, 31, 3, 2, 2, 2, 235, 233,
-	3, 2, 2, 2, 236, 243, 5, 34, 18, 2, 237, 239, 7, 14, 2, 2, 238, 237, 3,
-	2, 2, 2, 239, 240, 3, 2, 2, 2, 240, 238, 3, 2, 2, 2, 240, 241, 3, 2, 2,
-	2, 241, 244, 3, 2, 2, 2, 242, 244, 7, 2, 2, 3, 243, 238, 3, 2, 2, 2, 243,
-	242, 3, 2, 2, 2, 244, 33, 3, 2, 2, 2, 245, 249, 5, 42, 22, 2, 246, 249,
-	7, 13, 2, 2, 247, 249, 5, 40, 21, 2, 248, 245, 3, 2, 2, 2, 248, 246, 3,
-	2, 2, 2, 248, 247, 3, 2, 2, 2, 249, 252, 3, 2, 2, 2, 250, 248, 3, 2, 2,
-	2, 250, 251, 3, 2, 2, 2, 251, 35, 3, 2, 2, 2, 252, 250, 3, 2, 2, 2, 253,
-	255, 7, 13, 2, 2, 254, 253, 3, 2, 2, 2, 255, 258, 3, 2, 2, 2, 256, 254,
-	3, 2, 2, 2, 256, 257, 3, 2, 2, 2, 257, 259, 3, 2, 2, 2, 258, 256, 3, 2,
-	2, 2, 259, 261, 7, 19, 2, 2, 260, 262, 5, 38, 20, 2, 261, 260, 3, 2, 2,
-	2, 262, 263, 3, 2, 2, 2, 263, 261, 3, 2, 2, 2, 263, 264, 3, 2, 2, 2, 264,
-	271, 3, 2, 2, 2, 265, 267, 7, 14, 2, 2, 266, 265, 3, 2, 2, 2, 267, 268,
-	3, 2, 2, 2, 268, 266, 3, 2, 2, 2, 268, 269, 3, 2, 2, 2, 269, 272, 3, 2,
-	2, 2, 270, 272, 7, 2, 2, 3, 271, 266, 3, 2, 2, 2, 271, 270, 3, 2, 2, 2,
-	272, 37, 3, 2, 2, 2, 273, 275, 7, 13, 2, 2, 274, 273, 3, 2, 2, 2, 275,
-	278, 3, 2, 2, 2, 276, 274, 3, 2, 2, 2, 276, 277, 3, 2, 2, 2, 277, 279,
-	3, 2, 2, 2, 278, 276, 3, 2, 2, 2, 279, 280, 5, 44, 23, 2, 280, 281, 7,
-	19, 2, 2, 281, 39, 3, 2, 2, 2, 282, 283, 7, 15, 2, 2, 283, 284, 5, 16,
-	9, 2, 284, 285, 7, 15, 2, 2, 285, 41, 3, 2, 2, 2, 286, 290, 9, 4, 2, 2,
-	287, 289, 9, 5, 2, 2, 288, 287, 3, 2, 2, 2, 289, 292, 3, 2, 2, 2, 290,
-	288, 3, 2, 2, 2, 290, 291, 3, 2, 2, 2, 291, 43, 3, 2, 2, 2, 292, 290, 3,
-	2, 2, 2, 293, 297, 9, 4, 2, 2, 294, 296, 9, 6, 2, 2, 295, 294, 3, 2, 2,
-	2, 296, 299, 3, 2, 2, 2, 297, 295, 3, 2, 2, 2, 297, 298, 3, 2, 2, 2, 298,
-	45, 3, 2, 2, 2, 299, 297, 3, 2, 2, 2, 300, 304, 9, 4, 2, 2, 301, 303, 9,
-	7, 2, 2, 302, 301, 3, 2, 2, 2, 303, 306, 3, 2, 2, 2, 304, 302, 3, 2, 2,
-	2, 304, 305, 3, 2, 2, 2, 305, 47, 3, 2, 2, 2, 306, 304, 3, 2, 2, 2, 41,
-	54, 60, 67, 74, 77, 82, 87, 93, 100, 104, 115, 117, 123, 129, 135, 142,
-	152, 158, 163, 171, 181, 190, 199, 208, 217, 226, 233, 240, 243, 248, 250,
-	256, 263, 268, 271, 276, 290, 297, 304,
+	4, 24, 9, 24, 4, 25, 9, 25, 4, 26, 9, 26, 4, 27, 9, 27, 4, 28, 9, 28, 4,
+	29, 9, 29, 3, 2, 7, 2, 60, 10, 2, 12, 2, 14, 2, 63, 11, 2, 3, 2, 3, 2,
+	3, 2, 3, 3, 7, 3, 69, 10, 3, 12, 3, 14, 3, 72, 11, 3, 3, 3, 7, 3, 75, 10,
+	3, 12, 3, 14, 3, 78, 11, 3, 3, 3, 3, 3, 7, 3, 82, 10, 3, 12, 3, 14, 3,
+	85, 11, 3, 3, 3, 3, 3, 6, 3, 89, 10, 3, 13, 3, 14, 3, 90, 3, 4, 5, 4, 94,
+	10, 4, 3, 4, 6, 4, 97, 10, 4, 13, 4, 14, 4, 98, 3, 5, 7, 5, 102, 10, 5,
+	12, 5, 14, 5, 105, 11, 5, 3, 5, 7, 5, 108, 10, 5, 12, 5, 14, 5, 111, 11,
+	5, 3, 5, 3, 5, 7, 5, 115, 10, 5, 12, 5, 14, 5, 118, 11, 5, 3, 5, 5, 5,
+	121, 10, 5, 3, 5, 3, 5, 3, 5, 3, 5, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6,
+	7, 6, 133, 10, 6, 12, 6, 14, 6, 136, 11, 6, 3, 7, 7, 7, 139, 10, 7, 12,
+	7, 14, 7, 142, 11, 7, 3, 7, 7, 7, 145, 10, 7, 12, 7, 14, 7, 148, 11, 7,
+	3, 7, 7, 7, 151, 10, 7, 12, 7, 14, 7, 154, 11, 7, 3, 7, 3, 7, 7, 7, 158,
+	10, 7, 12, 7, 14, 7, 161, 11, 7, 3, 7, 3, 7, 3, 7, 3, 7, 3, 8, 7, 8, 168,
+	10, 8, 12, 8, 14, 8, 171, 11, 8, 3, 8, 3, 8, 3, 8, 5, 8, 176, 10, 8, 3,
+	8, 7, 8, 179, 10, 8, 12, 8, 14, 8, 182, 11, 8, 3, 8, 3, 8, 3, 9, 7, 9,
+	187, 10, 9, 12, 9, 14, 9, 190, 11, 9, 3, 10, 3, 10, 3, 10, 3, 10, 3, 11,
+	7, 11, 197, 10, 11, 12, 11, 14, 11, 200, 11, 11, 3, 11, 3, 11, 3, 11, 3,
+	12, 7, 12, 206, 10, 12, 12, 12, 14, 12, 209, 11, 12, 3, 12, 3, 12, 3, 12,
+	3, 13, 7, 13, 215, 10, 13, 12, 13, 14, 13, 218, 11, 13, 3, 13, 3, 13, 3,
+	13, 3, 14, 7, 14, 224, 10, 14, 12, 14, 14, 14, 227, 11, 14, 3, 14, 3, 14,
+	3, 14, 3, 15, 7, 15, 233, 10, 15, 12, 15, 14, 15, 236, 11, 15, 3, 15, 3,
+	15, 3, 15, 3, 16, 7, 16, 242, 10, 16, 12, 16, 14, 16, 245, 11, 16, 3, 16,
+	3, 16, 3, 16, 3, 17, 7, 17, 251, 10, 17, 12, 17, 14, 17, 254, 11, 17, 3,
+	17, 3, 17, 5, 17, 258, 10, 17, 3, 18, 3, 18, 6, 18, 262, 10, 18, 13, 18,
+	14, 18, 263, 3, 18, 5, 18, 267, 10, 18, 3, 19, 3, 19, 3, 19, 7, 19, 272,
+	10, 19, 12, 19, 14, 19, 275, 11, 19, 3, 20, 3, 20, 7, 20, 279, 10, 20,
+	12, 20, 14, 20, 282, 11, 20, 3, 21, 7, 21, 285, 10, 21, 12, 21, 14, 21,
+	288, 11, 21, 3, 21, 3, 21, 6, 21, 292, 10, 21, 13, 21, 14, 21, 293, 3,
+	21, 6, 21, 297, 10, 21, 13, 21, 14, 21, 298, 3, 21, 5, 21, 302, 10, 21,
+	3, 22, 7, 22, 305, 10, 22, 12, 22, 14, 22, 308, 11, 22, 3, 22, 3, 22, 6,
+	22, 312, 10, 22, 13, 22, 14, 22, 313, 3, 22, 6, 22, 317, 10, 22, 13, 22,
+	14, 22, 318, 3, 22, 5, 22, 322, 10, 22, 3, 23, 7, 23, 325, 10, 23, 12,
+	23, 14, 23, 328, 11, 23, 3, 23, 3, 23, 3, 23, 3, 24, 3, 24, 3, 24, 3, 24,
+	3, 25, 3, 25, 7, 25, 339, 10, 25, 12, 25, 14, 25, 342, 11, 25, 3, 26, 3,
+	26, 7, 26, 346, 10, 26, 12, 26, 14, 26, 349, 11, 26, 3, 27, 3, 27, 7, 27,
+	353, 10, 27, 12, 27, 14, 27, 356, 11, 27, 3, 28, 7, 28, 359, 10, 28, 12,
+	28, 14, 28, 362, 11, 28, 3, 28, 3, 28, 7, 28, 366, 10, 28, 12, 28, 14,
+	28, 369, 11, 28, 3, 28, 3, 28, 3, 28, 3, 29, 7, 29, 375, 10, 29, 12, 29,
+	14, 29, 378, 11, 29, 3, 29, 4, 188, 376, 2, 30, 2, 4, 6, 8, 10, 12, 14,
+	16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50,
+	52, 54, 56, 2, 8, 3, 2, 15, 16, 3, 3, 16, 16, 4, 2, 18, 18, 22, 22, 4,
+	2, 15, 15, 18, 22, 5, 2, 15, 15, 17, 20, 22, 22, 4, 2, 15, 15, 17, 22,
+	2, 405, 2, 61, 3, 2, 2, 2, 4, 70, 3, 2, 2, 2, 6, 93, 3, 2, 2, 2, 8, 103,
+	3, 2, 2, 2, 10, 134, 3, 2, 2, 2, 12, 140, 3, 2, 2, 2, 14, 169, 3, 2, 2,
+	2, 16, 188, 3, 2, 2, 2, 18, 191, 3, 2, 2, 2, 20, 198, 3, 2, 2, 2, 22, 207,
+	3, 2, 2, 2, 24, 216, 3, 2, 2, 2, 26, 225, 3, 2, 2, 2, 28, 234, 3, 2, 2,
+	2, 30, 243, 3, 2, 2, 2, 32, 252, 3, 2, 2, 2, 34, 259, 3, 2, 2, 2, 36, 273,
+	3, 2, 2, 2, 38, 276, 3, 2, 2, 2, 40, 286, 3, 2, 2, 2, 42, 306, 3, 2, 2,
+	2, 44, 326, 3, 2, 2, 2, 46, 332, 3, 2, 2, 2, 48, 336, 3, 2, 2, 2, 50, 343,
+	3, 2, 2, 2, 52, 350, 3, 2, 2, 2, 54, 360, 3, 2, 2, 2, 56, 376, 3, 2, 2,
+	2, 58, 60, 5, 54, 28, 2, 59, 58, 3, 2, 2, 2, 60, 63, 3, 2, 2, 2, 61, 59,
+	3, 2, 2, 2, 61, 62, 3, 2, 2, 2, 62, 64, 3, 2, 2, 2, 63, 61, 3, 2, 2, 2,
+	64, 65, 5, 4, 3, 2, 65, 66, 5, 6, 4, 2, 66, 3, 3, 2, 2, 2, 67, 69, 9, 2,
+	2, 2, 68, 67, 3, 2, 2, 2, 69, 72, 3, 2, 2, 2, 70, 68, 3, 2, 2, 2, 70, 71,
+	3, 2, 2, 2, 71, 76, 3, 2, 2, 2, 72, 70, 3, 2, 2, 2, 73, 75, 5, 14, 8, 2,
+	74, 73, 3, 2, 2, 2, 75, 78, 3, 2, 2, 2, 76, 74, 3, 2, 2, 2, 76, 77, 3,
+	2, 2, 2, 77, 79, 3, 2, 2, 2, 78, 76, 3, 2, 2, 2, 79, 83, 7, 14, 2, 2, 80,
+	82, 7, 15, 2, 2, 81, 80, 3, 2, 2, 2, 82, 85, 3, 2, 2, 2, 83, 81, 3, 2,
+	2, 2, 83, 84, 3, 2, 2, 2, 84, 86, 3, 2, 2, 2, 85, 83, 3, 2, 2, 2, 86, 88,
+	5, 52, 27, 2, 87, 89, 7, 16, 2, 2, 88, 87, 3, 2, 2, 2, 89, 90, 3, 2, 2,
+	2, 90, 88, 3, 2, 2, 2, 90, 91, 3, 2, 2, 2, 91, 5, 3, 2, 2, 2, 92, 94, 5,
+	8, 5, 2, 93, 92, 3, 2, 2, 2, 93, 94, 3, 2, 2, 2, 94, 96, 3, 2, 2, 2, 95,
+	97, 5, 12, 7, 2, 96, 95, 3, 2, 2, 2, 97, 98, 3, 2, 2, 2, 98, 96, 3, 2,
+	2, 2, 98, 99, 3, 2, 2, 2, 99, 7, 3, 2, 2, 2, 100, 102, 9, 2, 2, 2, 101,
+	100, 3, 2, 2, 2, 102, 105, 3, 2, 2, 2, 103, 101, 3, 2, 2, 2, 103, 104,
+	3, 2, 2, 2, 104, 109, 3, 2, 2, 2, 105, 103, 3, 2, 2, 2, 106, 108, 5, 14,
+	8, 2, 107, 106, 3, 2, 2, 2, 108, 111, 3, 2, 2, 2, 109, 107, 3, 2, 2, 2,
+	109, 110, 3, 2, 2, 2, 110, 112, 3, 2, 2, 2, 111, 109, 3, 2, 2, 2, 112,
+	116, 7, 12, 2, 2, 113, 115, 7, 15, 2, 2, 114, 113, 3, 2, 2, 2, 115, 118,
+	3, 2, 2, 2, 116, 114, 3, 2, 2, 2, 116, 117, 3, 2, 2, 2, 117, 120, 3, 2,
+	2, 2, 118, 116, 3, 2, 2, 2, 119, 121, 5, 52, 27, 2, 120, 119, 3, 2, 2,
+	2, 120, 121, 3, 2, 2, 2, 121, 122, 3, 2, 2, 2, 122, 123, 9, 3, 2, 2, 123,
+	124, 5, 10, 6, 2, 124, 125, 9, 3, 2, 2, 125, 9, 3, 2, 2, 2, 126, 133, 5,
+	20, 11, 2, 127, 133, 5, 22, 12, 2, 128, 133, 5, 24, 13, 2, 129, 133, 5,
+	28, 15, 2, 130, 133, 5, 26, 14, 2, 131, 133, 5, 30, 16, 2, 132, 126, 3,
+	2, 2, 2, 132, 127, 3, 2, 2, 2, 132, 128, 3, 2, 2, 2, 132, 129, 3, 2, 2,
+	2, 132, 130, 3, 2, 2, 2, 132, 131, 3, 2, 2, 2, 133, 136, 3, 2, 2, 2, 134,
+	132, 3, 2, 2, 2, 134, 135, 3, 2, 2, 2, 135, 11, 3, 2, 2, 2, 136, 134, 3,
+	2, 2, 2, 137, 139, 9, 2, 2, 2, 138, 137, 3, 2, 2, 2, 139, 142, 3, 2, 2,
+	2, 140, 138, 3, 2, 2, 2, 140, 141, 3, 2, 2, 2, 141, 146, 3, 2, 2, 2, 142,
+	140, 3, 2, 2, 2, 143, 145, 5, 14, 8, 2, 144, 143, 3, 2, 2, 2, 145, 148,
+	3, 2, 2, 2, 146, 144, 3, 2, 2, 2, 146, 147, 3, 2, 2, 2, 147, 152, 3, 2,
+	2, 2, 148, 146, 3, 2, 2, 2, 149, 151, 7, 15, 2, 2, 150, 149, 3, 2, 2, 2,
+	151, 154, 3, 2, 2, 2, 152, 150, 3, 2, 2, 2, 152, 153, 3, 2, 2, 2, 153,
+	155, 3, 2, 2, 2, 154, 152, 3, 2, 2, 2, 155, 159, 7, 13, 2, 2, 156, 158,
+	7, 15, 2, 2, 157, 156, 3, 2, 2, 2, 158, 161, 3, 2, 2, 2, 159, 157, 3, 2,
+	2, 2, 159, 160, 3, 2, 2, 2, 160, 162, 3, 2, 2, 2, 161, 159, 3, 2, 2, 2,
+	162, 163, 5, 52, 27, 2, 163, 164, 9, 3, 2, 2, 164, 165, 5, 10, 6, 2, 165,
+	13, 3, 2, 2, 2, 166, 168, 9, 2, 2, 2, 167, 166, 3, 2, 2, 2, 168, 171, 3,
+	2, 2, 2, 169, 167, 3, 2, 2, 2, 169, 170, 3, 2, 2, 2, 170, 172, 3, 2, 2,
+	2, 171, 169, 3, 2, 2, 2, 172, 173, 7, 20, 2, 2, 173, 175, 5, 16, 9, 2,
+	174, 176, 5, 18, 10, 2, 175, 174, 3, 2, 2, 2, 175, 176, 3, 2, 2, 2, 176,
+	180, 3, 2, 2, 2, 177, 179, 7, 15, 2, 2, 178, 177, 3, 2, 2, 2, 179, 182,
+	3, 2, 2, 2, 180, 178, 3, 2, 2, 2, 180, 181, 3, 2, 2, 2, 181, 183, 3, 2,
+	2, 2, 182, 180, 3, 2, 2, 2, 183, 184, 7, 16, 2, 2, 184, 15, 3, 2, 2, 2,
+	185, 187, 11, 2, 2, 2, 186, 185, 3, 2, 2, 2, 187, 190, 3, 2, 2, 2, 188,
+	189, 3, 2, 2, 2, 188, 186, 3, 2, 2, 2, 189, 17, 3, 2, 2, 2, 190, 188, 3,
+	2, 2, 2, 191, 192, 7, 18, 2, 2, 192, 193, 5, 52, 27, 2, 193, 194, 7, 19,
+	2, 2, 194, 19, 3, 2, 2, 2, 195, 197, 9, 2, 2, 2, 196, 195, 3, 2, 2, 2,
+	197, 200, 3, 2, 2, 2, 198, 196, 3, 2, 2, 2, 198, 199, 3, 2, 2, 2, 199,
+	201, 3, 2, 2, 2, 200, 198, 3, 2, 2, 2, 201, 202, 7, 8, 2, 2, 202, 203,
+	5, 32, 17, 2, 203, 21, 3, 2, 2, 2, 204, 206, 9, 2, 2, 2, 205, 204, 3, 2,
+	2, 2, 206, 209, 3, 2, 2, 2, 207, 205, 3, 2, 2, 2, 207, 208, 3, 2, 2, 2,
+	208, 210, 3, 2, 2, 2, 209, 207, 3, 2, 2, 2, 210, 211, 7, 9, 2, 2, 211,
+	212, 5, 32, 17, 2, 212, 23, 3, 2, 2, 2, 213, 215, 9, 2, 2, 2, 214, 213,
+	3, 2, 2, 2, 215, 218, 3, 2, 2, 2, 216, 214, 3, 2, 2, 2, 216, 217, 3, 2,
+	2, 2, 217, 219, 3, 2, 2, 2, 218, 216, 3, 2, 2, 2, 219, 220, 7, 7, 2, 2,
+	220, 221, 5, 32, 17, 2, 221, 25, 3, 2, 2, 2, 222, 224, 9, 2, 2, 2, 223,
+	222, 3, 2, 2, 2, 224, 227, 3, 2, 2, 2, 225, 223, 3, 2, 2, 2, 225, 226,
+	3, 2, 2, 2, 226, 228, 3, 2, 2, 2, 227, 225, 3, 2, 2, 2, 228, 229, 7, 6,
+	2, 2, 229, 230, 5, 32, 17, 2, 230, 27, 3, 2, 2, 2, 231, 233, 9, 2, 2, 2,
+	232, 231, 3, 2, 2, 2, 233, 236, 3, 2, 2, 2, 234, 232, 3, 2, 2, 2, 234,
+	235, 3, 2, 2, 2, 235, 237, 3, 2, 2, 2, 236, 234, 3, 2, 2, 2, 237, 238,
+	7, 10, 2, 2, 238, 239, 5, 32, 17, 2, 239, 29, 3, 2, 2, 2, 240, 242, 9,
+	2, 2, 2, 241, 240, 3, 2, 2, 2, 242, 245, 3, 2, 2, 2, 243, 241, 3, 2, 2,
+	2, 243, 244, 3, 2, 2, 2, 244, 246, 3, 2, 2, 2, 245, 243, 3, 2, 2, 2, 246,
+	247, 7, 11, 2, 2, 247, 248, 5, 32, 17, 2, 248, 31, 3, 2, 2, 2, 249, 251,
+	7, 15, 2, 2, 250, 249, 3, 2, 2, 2, 251, 254, 3, 2, 2, 2, 252, 250, 3, 2,
+	2, 2, 252, 253, 3, 2, 2, 2, 253, 255, 3, 2, 2, 2, 254, 252, 3, 2, 2, 2,
+	255, 257, 5, 34, 18, 2, 256, 258, 5, 38, 20, 2, 257, 256, 3, 2, 2, 2, 257,
+	258, 3, 2, 2, 2, 258, 33, 3, 2, 2, 2, 259, 266, 5, 36, 19, 2, 260, 262,
+	7, 16, 2, 2, 261, 260, 3, 2, 2, 2, 262, 263, 3, 2, 2, 2, 263, 261, 3, 2,
+	2, 2, 263, 264, 3, 2, 2, 2, 264, 267, 3, 2, 2, 2, 265, 267, 7, 2, 2, 3,
+	266, 261, 3, 2, 2, 2, 266, 265, 3, 2, 2, 2, 267, 35, 3, 2, 2, 2, 268, 272,
+	5, 48, 25, 2, 269, 272, 7, 15, 2, 2, 270, 272, 5, 46, 24, 2, 271, 268,
+	3, 2, 2, 2, 271, 269, 3, 2, 2, 2, 271, 270, 3, 2, 2, 2, 272, 275, 3, 2,
+	2, 2, 273, 271, 3, 2, 2, 2, 273, 274, 3, 2, 2, 2, 274, 37, 3, 2, 2, 2,
+	275, 273, 3, 2, 2, 2, 276, 280, 5, 40, 21, 2, 277, 279, 5, 42, 22, 2, 278,
+	277, 3, 2, 2, 2, 279, 282, 3, 2, 2, 2, 280, 278, 3, 2, 2, 2, 280, 281,
+	3, 2, 2, 2, 281, 39, 3, 2, 2, 2, 282, 280, 3, 2, 2, 2, 283, 285, 7, 15,
+	2, 2, 284, 283, 3, 2, 2, 2, 285, 288, 3, 2, 2, 2, 286, 284, 3, 2, 2, 2,
+	286, 287, 3, 2, 2, 2, 287, 289, 3, 2, 2, 2, 288, 286, 3, 2, 2, 2, 289,
+	291, 7, 21, 2, 2, 290, 292, 5, 44, 23, 2, 291, 290, 3, 2, 2, 2, 292, 293,
+	3, 2, 2, 2, 293, 291, 3, 2, 2, 2, 293, 294, 3, 2, 2, 2, 294, 301, 3, 2,
+	2, 2, 295, 297, 7, 16, 2, 2, 296, 295, 3, 2, 2, 2, 297, 298, 3, 2, 2, 2,
+	298, 296, 3, 2, 2, 2, 298, 299, 3, 2, 2, 2, 299, 302, 3, 2, 2, 2, 300,
+	302, 7, 2, 2, 3, 301, 296, 3, 2, 2, 2, 301, 300, 3, 2, 2, 2, 302, 41, 3,
+	2, 2, 2, 303, 305, 7, 15, 2, 2, 304, 303, 3, 2, 2, 2, 305, 308, 3, 2, 2,
+	2, 306, 304, 3, 2, 2, 2, 306, 307, 3, 2, 2, 2, 307, 309, 3, 2, 2, 2, 308,
+	306, 3, 2, 2, 2, 309, 311, 7, 21, 2, 2, 310, 312, 5, 44, 23, 2, 311, 310,
+	3, 2, 2, 2, 312, 313, 3, 2, 2, 2, 313, 311, 3, 2, 2, 2, 313, 314, 3, 2,
+	2, 2, 314, 321, 3, 2, 2, 2, 315, 317, 7, 16, 2, 2, 316, 315, 3, 2, 2, 2,
+	317, 318, 3, 2, 2, 2, 318, 316, 3, 2, 2, 2, 318, 319, 3, 2, 2, 2, 319,
+	322, 3, 2, 2, 2, 320, 322, 7, 2, 2, 3, 321, 316, 3, 2, 2, 2, 321, 320,
+	3, 2, 2, 2, 322, 43, 3, 2, 2, 2, 323, 325, 7, 15, 2, 2, 324, 323, 3, 2,
+	2, 2, 325, 328, 3, 2, 2, 2, 326, 324, 3, 2, 2, 2, 326, 327, 3, 2, 2, 2,
+	327, 329, 3, 2, 2, 2, 328, 326, 3, 2, 2, 2, 329, 330, 5, 50, 26, 2, 330,
+	331, 7, 21, 2, 2, 331, 45, 3, 2, 2, 2, 332, 333, 7, 17, 2, 2, 333, 334,
+	5, 16, 9, 2, 334, 335, 7, 17, 2, 2, 335, 47, 3, 2, 2, 2, 336, 340, 9, 4,
+	2, 2, 337, 339, 9, 5, 2, 2, 338, 337, 3, 2, 2, 2, 339, 342, 3, 2, 2, 2,
+	340, 338, 3, 2, 2, 2, 340, 341, 3, 2, 2, 2, 341, 49, 3, 2, 2, 2, 342, 340,
+	3, 2, 2, 2, 343, 347, 9, 4, 2, 2, 344, 346, 9, 6, 2, 2, 345, 344, 3, 2,
+	2, 2, 346, 349, 3, 2, 2, 2, 347, 345, 3, 2, 2, 2, 347, 348, 3, 2, 2, 2,
+	348, 51, 3, 2, 2, 2, 349, 347, 3, 2, 2, 2, 350, 354, 9, 4, 2, 2, 351, 353,
+	9, 7, 2, 2, 352, 351, 3, 2, 2, 2, 353, 356, 3, 2, 2, 2, 354, 352, 3, 2,
+	2, 2, 354, 355, 3, 2, 2, 2, 355, 53, 3, 2, 2, 2, 356, 354, 3, 2, 2, 2,
+	357, 359, 7, 15, 2, 2, 358, 357, 3, 2, 2, 2, 359, 362, 3, 2, 2, 2, 360,
+	358, 3, 2, 2, 2, 360, 361, 3, 2, 2, 2, 361, 363, 3, 2, 2, 2, 362, 360,
+	3, 2, 2, 2, 363, 367, 7, 3, 2, 2, 364, 366, 7, 15, 2, 2, 365, 364, 3, 2,
+	2, 2, 366, 369, 3, 2, 2, 2, 367, 365, 3, 2, 2, 2, 367, 368, 3, 2, 2, 2,
+	368, 370, 3, 2, 2, 2, 369, 367, 3, 2, 2, 2, 370, 371, 5, 56, 29, 2, 371,
+	372, 7, 16, 2, 2, 372, 55, 3, 2, 2, 2, 373, 375, 11, 2, 2, 2, 374, 373,
+	3, 2, 2, 2, 375, 378, 3, 2, 2, 2, 376, 377, 3, 2, 2, 2, 376, 374, 3, 2,
+	2, 2, 377, 57, 3, 2, 2, 2, 378, 376, 3, 2, 2, 2, 51, 61, 70, 76, 83, 90,
+	93, 98, 103, 109, 116, 120, 132, 134, 140, 146, 152, 159, 169, 175, 180,
+	188, 198, 207, 216, 225, 234, 243, 252, 257, 263, 266, 271, 273, 280, 286,
+	293, 298, 301, 306, 313, 318, 321, 326, 340, 347, 354, 360, 367, 376,
 }
 var deserializer = antlr.NewATNDeserializer(nil)
 var deserializedATN = deserializer.DeserializeFromUInt16(parserATN)
 
 var literalNames = []string{
-	"", "", "", "", "", "", "", "", "", "", "", "", "", "'\"'", "'('", "')'",
-	"'@'", "'|'",
+	"", "'#'", "", "", "", "", "", "", "", "", "", "", "", "", "", "'\"'",
+	"'('", "')'", "'@'", "'|'",
 }
 var symbolicNames = []string{
-	"", "Comment", "EmptyLine", "And", "Or", "Given", "When", "Then", "Background",
-	"Scenario", "Feature", "Space", "NewLine", "Quote", "LBracket", "RBracket",
-	"At", "Pipe", "Char",
+	"", "", "IDENTIFIER", "EmptyLine", "And", "Or", "Given", "When", "Then",
+	"Examples", "Background", "Scenario", "Feature", "Space", "NewLine", "Quote",
+	"LBracket", "RBracket", "At", "Pipe", "Char",
 }
 
 var ruleNames = []string{
 	"feature", "featureHeader", "featureBody", "background", "blockBody", "scenario",
-	"tags", "anyText", "value", "given", "when", "or", "and", "then", "step",
-	"stepContent", "stepText", "row", "cell", "parameter", "contentNoQuotes",
-	"contentNoPipes", "content",
+	"tags", "anyText", "value", "given", "when", "or", "and", "then", "example",
+	"step", "stepContent", "stepText", "table", "tableHeader", "row", "cell",
+	"parameter", "contentNoQuotes", "contentNoPipes", "content", "comment",
+	"commentText",
 }
 var decisionToDFA = make([]*antlr.DFA, len(deserializedATN.DecisionToState))
 
@@ -204,24 +238,26 @@ func NewFeatureParser(input antlr.TokenStream) *FeatureParser {
 // FeatureParser tokens.
 const (
 	FeatureParserEOF        = antlr.TokenEOF
-	FeatureParserComment    = 1
-	FeatureParserEmptyLine  = 2
-	FeatureParserAnd        = 3
-	FeatureParserOr         = 4
-	FeatureParserGiven      = 5
-	FeatureParserWhen       = 6
-	FeatureParserThen       = 7
-	FeatureParserBackground = 8
-	FeatureParserScenario   = 9
-	FeatureParserFeature    = 10
-	FeatureParserSpace      = 11
-	FeatureParserNewLine    = 12
-	FeatureParserQuote      = 13
-	FeatureParserLBracket   = 14
-	FeatureParserRBracket   = 15
-	FeatureParserAt         = 16
-	FeatureParserPipe       = 17
-	FeatureParserChar       = 18
+	FeatureParserT__0       = 1
+	FeatureParserIDENTIFIER = 2
+	FeatureParserEmptyLine  = 3
+	FeatureParserAnd        = 4
+	FeatureParserOr         = 5
+	FeatureParserGiven      = 6
+	FeatureParserWhen       = 7
+	FeatureParserThen       = 8
+	FeatureParserExamples   = 9
+	FeatureParserBackground = 10
+	FeatureParserScenario   = 11
+	FeatureParserFeature    = 12
+	FeatureParserSpace      = 13
+	FeatureParserNewLine    = 14
+	FeatureParserQuote      = 15
+	FeatureParserLBracket   = 16
+	FeatureParserRBracket   = 17
+	FeatureParserAt         = 18
+	FeatureParserPipe       = 19
+	FeatureParserChar       = 20
 )
 
 // FeatureParser rules.
@@ -240,15 +276,20 @@ const (
 	FeatureParserRULE_or              = 11
 	FeatureParserRULE_and             = 12
 	FeatureParserRULE_then            = 13
-	FeatureParserRULE_step            = 14
-	FeatureParserRULE_stepContent     = 15
-	FeatureParserRULE_stepText        = 16
-	FeatureParserRULE_row             = 17
-	FeatureParserRULE_cell            = 18
-	FeatureParserRULE_parameter       = 19
-	FeatureParserRULE_contentNoQuotes = 20
-	FeatureParserRULE_contentNoPipes  = 21
-	FeatureParserRULE_content         = 22
+	FeatureParserRULE_example         = 14
+	FeatureParserRULE_step            = 15
+	FeatureParserRULE_stepContent     = 16
+	FeatureParserRULE_stepText        = 17
+	FeatureParserRULE_table           = 18
+	FeatureParserRULE_tableHeader     = 19
+	FeatureParserRULE_row             = 20
+	FeatureParserRULE_cell            = 21
+	FeatureParserRULE_parameter       = 22
+	FeatureParserRULE_contentNoQuotes = 23
+	FeatureParserRULE_contentNoPipes  = 24
+	FeatureParserRULE_content         = 25
+	FeatureParserRULE_comment         = 26
+	FeatureParserRULE_commentText     = 27
 )
 
 // IFeatureContext is an interface to support dynamic dispatch.
@@ -309,6 +350,29 @@ func (s *FeatureContext) FeatureBody() IFeatureBodyContext {
 	return t.(IFeatureBodyContext)
 }
 
+func (s *FeatureContext) AllComment() []ICommentContext {
+	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*ICommentContext)(nil)).Elem())
+	var tst = make([]ICommentContext, len(ts))
+
+	for i, t := range ts {
+		if t != nil {
+			tst[i] = t.(ICommentContext)
+		}
+	}
+
+	return tst
+}
+
+func (s *FeatureContext) Comment(i int) ICommentContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICommentContext)(nil)).Elem(), i)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ICommentContext)
+}
+
 func (s *FeatureContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -359,13 +423,31 @@ func (p *FeatureParser) Feature() (localctx IFeatureContext) {
 		}
 	}()
 
+	var _alt int
+
 	p.EnterOuterAlt(localctx, 1)
+	p.SetState(59)
+	p.GetErrorHandler().Sync(p)
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 0, p.GetParserRuleContext())
+
+	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
+		if _alt == 1 {
+			{
+				p.SetState(56)
+				p.Comment()
+			}
+
+		}
+		p.SetState(61)
+		p.GetErrorHandler().Sync(p)
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 0, p.GetParserRuleContext())
+	}
 	{
-		p.SetState(46)
+		p.SetState(62)
 		p.FeatureHeader()
 	}
 	{
-		p.SetState(47)
+		p.SetState(63)
 		p.FeatureBody()
 	}
 
@@ -517,14 +599,14 @@ func (p *FeatureParser) FeatureHeader() (localctx IFeatureHeaderContext) {
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(52)
+	p.SetState(68)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 0, p.GetParserRuleContext())
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 1, p.GetParserRuleContext())
 
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			{
-				p.SetState(49)
+				p.SetState(65)
 				_la = p.GetTokenStream().LA(1)
 
 				if !(_la == FeatureParserSpace || _la == FeatureParserNewLine) {
@@ -536,54 +618,54 @@ func (p *FeatureParser) FeatureHeader() (localctx IFeatureHeaderContext) {
 			}
 
 		}
-		p.SetState(54)
+		p.SetState(70)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 0, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 1, p.GetParserRuleContext())
 	}
-	p.SetState(58)
+	p.SetState(74)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for ((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<FeatureParserSpace)|(1<<FeatureParserNewLine)|(1<<FeatureParserAt))) != 0 {
 		{
-			p.SetState(55)
+			p.SetState(71)
 			p.Tags()
 		}
 
-		p.SetState(60)
+		p.SetState(76)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(61)
+		p.SetState(77)
 		p.Match(FeatureParserFeature)
 	}
-	p.SetState(65)
+	p.SetState(81)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == FeatureParserSpace {
 		{
-			p.SetState(62)
+			p.SetState(78)
 			p.Match(FeatureParserSpace)
 		}
 
-		p.SetState(67)
+		p.SetState(83)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(68)
+		p.SetState(84)
 		p.Content()
 	}
-	p.SetState(70)
+	p.SetState(86)
 	p.GetErrorHandler().Sync(p)
 	_alt = 1
 	for ok := true; ok; ok = _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		switch _alt {
 		case 1:
 			{
-				p.SetState(69)
+				p.SetState(85)
 				p.Match(FeatureParserNewLine)
 			}
 
@@ -591,9 +673,9 @@ func (p *FeatureParser) FeatureHeader() (localctx IFeatureHeaderContext) {
 			panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 		}
 
-		p.SetState(72)
+		p.SetState(88)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 3, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 4, p.GetParserRuleContext())
 	}
 
 	return localctx
@@ -722,27 +804,27 @@ func (p *FeatureParser) FeatureBody() (localctx IFeatureBodyContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(75)
+	p.SetState(91)
 	p.GetErrorHandler().Sync(p)
 
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 4, p.GetParserRuleContext()) == 1 {
+	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 5, p.GetParserRuleContext()) == 1 {
 		{
-			p.SetState(74)
+			p.SetState(90)
 			p.Background()
 		}
 
 	}
-	p.SetState(78)
+	p.SetState(94)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for ok := true; ok; ok = (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<FeatureParserScenario)|(1<<FeatureParserSpace)|(1<<FeatureParserNewLine)|(1<<FeatureParserAt))) != 0) {
 		{
-			p.SetState(77)
+			p.SetState(93)
 			p.Scenario()
 		}
 
-		p.SetState(80)
+		p.SetState(96)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
@@ -913,14 +995,14 @@ func (p *FeatureParser) Background() (localctx IBackgroundContext) {
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(85)
+	p.SetState(101)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 6, p.GetParserRuleContext())
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 7, p.GetParserRuleContext())
 
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			{
-				p.SetState(82)
+				p.SetState(98)
 				_la = p.GetTokenStream().LA(1)
 
 				if !(_la == FeatureParserSpace || _la == FeatureParserNewLine) {
@@ -932,55 +1014,55 @@ func (p *FeatureParser) Background() (localctx IBackgroundContext) {
 			}
 
 		}
-		p.SetState(87)
+		p.SetState(103)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 6, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 7, p.GetParserRuleContext())
 	}
-	p.SetState(91)
+	p.SetState(107)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for ((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<FeatureParserSpace)|(1<<FeatureParserNewLine)|(1<<FeatureParserAt))) != 0 {
 		{
-			p.SetState(88)
+			p.SetState(104)
 			p.Tags()
 		}
 
-		p.SetState(93)
+		p.SetState(109)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(94)
+		p.SetState(110)
 		p.Match(FeatureParserBackground)
 	}
-	p.SetState(98)
+	p.SetState(114)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == FeatureParserSpace {
 		{
-			p.SetState(95)
+			p.SetState(111)
 			p.Match(FeatureParserSpace)
 		}
 
-		p.SetState(100)
+		p.SetState(116)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
-	p.SetState(102)
+	p.SetState(118)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	if _la == FeatureParserLBracket || _la == FeatureParserChar {
 		{
-			p.SetState(101)
+			p.SetState(117)
 			p.Content()
 		}
 
 	}
 	{
-		p.SetState(104)
+		p.SetState(120)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == FeatureParserEOF || _la == FeatureParserNewLine) {
@@ -991,11 +1073,11 @@ func (p *FeatureParser) Background() (localctx IBackgroundContext) {
 		}
 	}
 	{
-		p.SetState(105)
+		p.SetState(121)
 		p.BlockBody()
 	}
 	{
-		p.SetState(106)
+		p.SetState(122)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == FeatureParserEOF || _la == FeatureParserNewLine) {
@@ -1162,6 +1244,29 @@ func (s *BlockBodyContext) And(i int) IAndContext {
 	return t.(IAndContext)
 }
 
+func (s *BlockBodyContext) AllExample() []IExampleContext {
+	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IExampleContext)(nil)).Elem())
+	var tst = make([]IExampleContext, len(ts))
+
+	for i, t := range ts {
+		if t != nil {
+			tst[i] = t.(IExampleContext)
+		}
+	}
+
+	return tst
+}
+
+func (s *BlockBodyContext) Example(i int) IExampleContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IExampleContext)(nil)).Elem(), i)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IExampleContext)
+}
+
 func (s *BlockBodyContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -1215,51 +1320,57 @@ func (p *FeatureParser) BlockBody() (localctx IBlockBodyContext) {
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(115)
+	p.SetState(132)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 11, p.GetParserRuleContext())
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 12, p.GetParserRuleContext())
 
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
-			p.SetState(113)
+			p.SetState(130)
 			p.GetErrorHandler().Sync(p)
-			switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 10, p.GetParserRuleContext()) {
+			switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 11, p.GetParserRuleContext()) {
 			case 1:
 				{
-					p.SetState(108)
+					p.SetState(124)
 					p.Given()
 				}
 
 			case 2:
 				{
-					p.SetState(109)
+					p.SetState(125)
 					p.When()
 				}
 
 			case 3:
 				{
-					p.SetState(110)
+					p.SetState(126)
 					p.Or()
 				}
 
 			case 4:
 				{
-					p.SetState(111)
+					p.SetState(127)
 					p.Then()
 				}
 
 			case 5:
 				{
-					p.SetState(112)
+					p.SetState(128)
 					p.And()
+				}
+
+			case 6:
+				{
+					p.SetState(129)
+					p.Example()
 				}
 
 			}
 
 		}
-		p.SetState(117)
+		p.SetState(134)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 11, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 12, p.GetParserRuleContext())
 	}
 
 	return localctx
@@ -1424,14 +1535,14 @@ func (p *FeatureParser) Scenario() (localctx IScenarioContext) {
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(121)
+	p.SetState(138)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 12, p.GetParserRuleContext())
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 13, p.GetParserRuleContext())
 
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			{
-				p.SetState(118)
+				p.SetState(135)
 				_la = p.GetTokenStream().LA(1)
 
 				if !(_la == FeatureParserSpace || _la == FeatureParserNewLine) {
@@ -1443,64 +1554,64 @@ func (p *FeatureParser) Scenario() (localctx IScenarioContext) {
 			}
 
 		}
-		p.SetState(123)
+		p.SetState(140)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 12, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 13, p.GetParserRuleContext())
 	}
-	p.SetState(127)
+	p.SetState(144)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 13, p.GetParserRuleContext())
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 14, p.GetParserRuleContext())
 
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			{
-				p.SetState(124)
+				p.SetState(141)
 				p.Tags()
 			}
 
 		}
-		p.SetState(129)
+		p.SetState(146)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 13, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 14, p.GetParserRuleContext())
 	}
-	p.SetState(133)
+	p.SetState(150)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == FeatureParserSpace {
 		{
-			p.SetState(130)
+			p.SetState(147)
 			p.Match(FeatureParserSpace)
 		}
 
-		p.SetState(135)
+		p.SetState(152)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(136)
+		p.SetState(153)
 		p.Match(FeatureParserScenario)
 	}
-	p.SetState(140)
+	p.SetState(157)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == FeatureParserSpace {
 		{
-			p.SetState(137)
+			p.SetState(154)
 			p.Match(FeatureParserSpace)
 		}
 
-		p.SetState(142)
+		p.SetState(159)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(143)
+		p.SetState(160)
 		p.Content()
 	}
 	{
-		p.SetState(144)
+		p.SetState(161)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == FeatureParserEOF || _la == FeatureParserNewLine) {
@@ -1511,7 +1622,7 @@ func (p *FeatureParser) Scenario() (localctx IScenarioContext) {
 		}
 	}
 	{
-		p.SetState(145)
+		p.SetState(162)
 		p.BlockBody()
 	}
 
@@ -1648,13 +1759,13 @@ func (p *FeatureParser) Tags() (localctx ITagsContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(150)
+	p.SetState(167)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == FeatureParserSpace || _la == FeatureParserNewLine {
 		{
-			p.SetState(147)
+			p.SetState(164)
 			_la = p.GetTokenStream().LA(1)
 
 			if !(_la == FeatureParserSpace || _la == FeatureParserNewLine) {
@@ -1665,45 +1776,45 @@ func (p *FeatureParser) Tags() (localctx ITagsContext) {
 			}
 		}
 
-		p.SetState(152)
+		p.SetState(169)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(153)
+		p.SetState(170)
 		p.Match(FeatureParserAt)
 	}
 	{
-		p.SetState(154)
+		p.SetState(171)
 		p.AnyText()
 	}
-	p.SetState(156)
+	p.SetState(173)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	if _la == FeatureParserLBracket {
 		{
-			p.SetState(155)
+			p.SetState(172)
 			p.Value()
 		}
 
 	}
-	p.SetState(161)
+	p.SetState(178)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == FeatureParserSpace {
 		{
-			p.SetState(158)
+			p.SetState(175)
 			p.Match(FeatureParserSpace)
 		}
 
-		p.SetState(163)
+		p.SetState(180)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(164)
+		p.SetState(181)
 		p.Match(FeatureParserNewLine)
 	}
 
@@ -1800,19 +1911,19 @@ func (p *FeatureParser) AnyText() (localctx IAnyTextContext) {
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(169)
+	p.SetState(186)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 19, p.GetParserRuleContext())
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 20, p.GetParserRuleContext())
 
 	for _alt != 1 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1+1 {
-			p.SetState(166)
+			p.SetState(183)
 			p.MatchWildcard()
 
 		}
-		p.SetState(171)
+		p.SetState(188)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 19, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 20, p.GetParserRuleContext())
 	}
 
 	return localctx
@@ -1926,15 +2037,15 @@ func (p *FeatureParser) Value() (localctx IValueContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(172)
+		p.SetState(189)
 		p.Match(FeatureParserLBracket)
 	}
 	{
-		p.SetState(173)
+		p.SetState(190)
 		p.Content()
 	}
 	{
-		p.SetState(174)
+		p.SetState(191)
 		p.Match(FeatureParserRBracket)
 	}
 
@@ -2061,13 +2172,13 @@ func (p *FeatureParser) Given() (localctx IGivenContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(179)
+	p.SetState(196)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == FeatureParserSpace || _la == FeatureParserNewLine {
 		{
-			p.SetState(176)
+			p.SetState(193)
 			_la = p.GetTokenStream().LA(1)
 
 			if !(_la == FeatureParserSpace || _la == FeatureParserNewLine) {
@@ -2078,16 +2189,16 @@ func (p *FeatureParser) Given() (localctx IGivenContext) {
 			}
 		}
 
-		p.SetState(181)
+		p.SetState(198)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(182)
+		p.SetState(199)
 		p.Match(FeatureParserGiven)
 	}
 	{
-		p.SetState(183)
+		p.SetState(200)
 		p.Step()
 	}
 
@@ -2214,13 +2325,13 @@ func (p *FeatureParser) When() (localctx IWhenContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(188)
+	p.SetState(205)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == FeatureParserSpace || _la == FeatureParserNewLine {
 		{
-			p.SetState(185)
+			p.SetState(202)
 			_la = p.GetTokenStream().LA(1)
 
 			if !(_la == FeatureParserSpace || _la == FeatureParserNewLine) {
@@ -2231,16 +2342,16 @@ func (p *FeatureParser) When() (localctx IWhenContext) {
 			}
 		}
 
-		p.SetState(190)
+		p.SetState(207)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(191)
+		p.SetState(208)
 		p.Match(FeatureParserWhen)
 	}
 	{
-		p.SetState(192)
+		p.SetState(209)
 		p.Step()
 	}
 
@@ -2367,13 +2478,13 @@ func (p *FeatureParser) Or() (localctx IOrContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(197)
+	p.SetState(214)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == FeatureParserSpace || _la == FeatureParserNewLine {
 		{
-			p.SetState(194)
+			p.SetState(211)
 			_la = p.GetTokenStream().LA(1)
 
 			if !(_la == FeatureParserSpace || _la == FeatureParserNewLine) {
@@ -2384,16 +2495,16 @@ func (p *FeatureParser) Or() (localctx IOrContext) {
 			}
 		}
 
-		p.SetState(199)
+		p.SetState(216)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(200)
+		p.SetState(217)
 		p.Match(FeatureParserOr)
 	}
 	{
-		p.SetState(201)
+		p.SetState(218)
 		p.Step()
 	}
 
@@ -2520,13 +2631,13 @@ func (p *FeatureParser) And() (localctx IAndContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(206)
+	p.SetState(223)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == FeatureParserSpace || _la == FeatureParserNewLine {
 		{
-			p.SetState(203)
+			p.SetState(220)
 			_la = p.GetTokenStream().LA(1)
 
 			if !(_la == FeatureParserSpace || _la == FeatureParserNewLine) {
@@ -2537,16 +2648,16 @@ func (p *FeatureParser) And() (localctx IAndContext) {
 			}
 		}
 
-		p.SetState(208)
+		p.SetState(225)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(209)
+		p.SetState(226)
 		p.Match(FeatureParserAnd)
 	}
 	{
-		p.SetState(210)
+		p.SetState(227)
 		p.Step()
 	}
 
@@ -2673,13 +2784,13 @@ func (p *FeatureParser) Then() (localctx IThenContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(215)
+	p.SetState(232)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == FeatureParserSpace || _la == FeatureParserNewLine {
 		{
-			p.SetState(212)
+			p.SetState(229)
 			_la = p.GetTokenStream().LA(1)
 
 			if !(_la == FeatureParserSpace || _la == FeatureParserNewLine) {
@@ -2690,16 +2801,169 @@ func (p *FeatureParser) Then() (localctx IThenContext) {
 			}
 		}
 
-		p.SetState(217)
+		p.SetState(234)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(218)
+		p.SetState(235)
 		p.Match(FeatureParserThen)
 	}
 	{
-		p.SetState(219)
+		p.SetState(236)
+		p.Step()
+	}
+
+	return localctx
+}
+
+// IExampleContext is an interface to support dynamic dispatch.
+type IExampleContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsExampleContext differentiates from other interfaces.
+	IsExampleContext()
+}
+
+type ExampleContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyExampleContext() *ExampleContext {
+	var p = new(ExampleContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = FeatureParserRULE_example
+	return p
+}
+
+func (*ExampleContext) IsExampleContext() {}
+
+func NewExampleContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *ExampleContext {
+	var p = new(ExampleContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = FeatureParserRULE_example
+
+	return p
+}
+
+func (s *ExampleContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *ExampleContext) Examples() antlr.TerminalNode {
+	return s.GetToken(FeatureParserExamples, 0)
+}
+
+func (s *ExampleContext) Step() IStepContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IStepContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IStepContext)
+}
+
+func (s *ExampleContext) AllSpace() []antlr.TerminalNode {
+	return s.GetTokens(FeatureParserSpace)
+}
+
+func (s *ExampleContext) Space(i int) antlr.TerminalNode {
+	return s.GetToken(FeatureParserSpace, i)
+}
+
+func (s *ExampleContext) AllNewLine() []antlr.TerminalNode {
+	return s.GetTokens(FeatureParserNewLine)
+}
+
+func (s *ExampleContext) NewLine(i int) antlr.TerminalNode {
+	return s.GetToken(FeatureParserNewLine, i)
+}
+
+func (s *ExampleContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *ExampleContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *ExampleContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(FeatureListener); ok {
+		listenerT.EnterExample(s)
+	}
+}
+
+func (s *ExampleContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(FeatureListener); ok {
+		listenerT.ExitExample(s)
+	}
+}
+
+func (s *ExampleContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case FeatureVisitor:
+		return t.VisitExample(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *FeatureParser) Example() (localctx IExampleContext) {
+	localctx = NewExampleContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 28, FeatureParserRULE_example)
+	var _la int
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.EnterOuterAlt(localctx, 1)
+	p.SetState(241)
+	p.GetErrorHandler().Sync(p)
+	_la = p.GetTokenStream().LA(1)
+
+	for _la == FeatureParserSpace || _la == FeatureParserNewLine {
+		{
+			p.SetState(238)
+			_la = p.GetTokenStream().LA(1)
+
+			if !(_la == FeatureParserSpace || _la == FeatureParserNewLine) {
+				p.GetErrorHandler().RecoverInline(p)
+			} else {
+				p.GetErrorHandler().ReportMatch(p)
+				p.Consume()
+			}
+		}
+
+		p.SetState(243)
+		p.GetErrorHandler().Sync(p)
+		_la = p.GetTokenStream().LA(1)
+	}
+	{
+		p.SetState(244)
+		p.Match(FeatureParserExamples)
+	}
+	{
+		p.SetState(245)
 		p.Step()
 	}
 
@@ -2762,27 +3026,14 @@ func (s *StepContext) Space(i int) antlr.TerminalNode {
 	return s.GetToken(FeatureParserSpace, i)
 }
 
-func (s *StepContext) AllRow() []IRowContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IRowContext)(nil)).Elem())
-	var tst = make([]IRowContext, len(ts))
-
-	for i, t := range ts {
-		if t != nil {
-			tst[i] = t.(IRowContext)
-		}
-	}
-
-	return tst
-}
-
-func (s *StepContext) Row(i int) IRowContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IRowContext)(nil)).Elem(), i)
+func (s *StepContext) Table() ITableContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ITableContext)(nil)).Elem(), 0)
 
 	if t == nil {
 		return nil
 	}
 
-	return t.(IRowContext)
+	return t.(ITableContext)
 }
 
 func (s *StepContext) GetRuleContext() antlr.RuleContext {
@@ -2817,7 +3068,7 @@ func (s *StepContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *FeatureParser) Step() (localctx IStepContext) {
 	localctx = NewStepContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 28, FeatureParserRULE_step)
+	p.EnterRule(localctx, 30, FeatureParserRULE_step)
 
 	defer func() {
 		p.ExitRule()
@@ -2838,41 +3089,35 @@ func (p *FeatureParser) Step() (localctx IStepContext) {
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(224)
+	p.SetState(250)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 25, p.GetParserRuleContext())
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 27, p.GetParserRuleContext())
 
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			{
-				p.SetState(221)
+				p.SetState(247)
 				p.Match(FeatureParserSpace)
 			}
 
 		}
-		p.SetState(226)
+		p.SetState(252)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 25, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 27, p.GetParserRuleContext())
 	}
 	{
-		p.SetState(227)
+		p.SetState(253)
 		p.StepContent()
 	}
-	p.SetState(231)
+	p.SetState(255)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 26, p.GetParserRuleContext())
 
-	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
-		if _alt == 1 {
-			{
-				p.SetState(228)
-				p.Row()
-			}
-
+	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 28, p.GetParserRuleContext()) == 1 {
+		{
+			p.SetState(254)
+			p.Table()
 		}
-		p.SetState(233)
-		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 26, p.GetParserRuleContext())
+
 	}
 
 	return localctx
@@ -2970,7 +3215,7 @@ func (s *StepContentContext) Accept(visitor antlr.ParseTreeVisitor) interface{} 
 
 func (p *FeatureParser) StepContent() (localctx IStepContentContext) {
 	localctx = NewStepContentContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 30, FeatureParserRULE_stepContent)
+	p.EnterRule(localctx, 32, FeatureParserRULE_stepContent)
 
 	defer func() {
 		p.ExitRule()
@@ -2992,22 +3237,22 @@ func (p *FeatureParser) StepContent() (localctx IStepContentContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(234)
+		p.SetState(257)
 		p.StepText()
 	}
-	p.SetState(241)
+	p.SetState(264)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case FeatureParserNewLine:
-		p.SetState(236)
+		p.SetState(259)
 		p.GetErrorHandler().Sync(p)
 		_alt = 1
 		for ok := true; ok; ok = _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 			switch _alt {
 			case 1:
 				{
-					p.SetState(235)
+					p.SetState(258)
 					p.Match(FeatureParserNewLine)
 				}
 
@@ -3015,14 +3260,14 @@ func (p *FeatureParser) StepContent() (localctx IStepContentContext) {
 				panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 			}
 
-			p.SetState(238)
+			p.SetState(261)
 			p.GetErrorHandler().Sync(p)
-			_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 27, p.GetParserRuleContext())
+			_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 29, p.GetParserRuleContext())
 		}
 
 	case FeatureParserEOF:
 		{
-			p.SetState(240)
+			p.SetState(263)
 			p.Match(FeatureParserEOF)
 		}
 
@@ -3157,7 +3402,7 @@ func (s *StepTextContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *FeatureParser) StepText() (localctx IStepTextContext) {
 	localctx = NewStepTextContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 32, FeatureParserRULE_stepText)
+	p.EnterRule(localctx, 34, FeatureParserRULE_stepText)
 	var _la int
 
 	defer func() {
@@ -3177,30 +3422,30 @@ func (p *FeatureParser) StepText() (localctx IStepTextContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(248)
+	p.SetState(271)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for ((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<FeatureParserSpace)|(1<<FeatureParserQuote)|(1<<FeatureParserLBracket)|(1<<FeatureParserChar))) != 0 {
-		p.SetState(246)
+		p.SetState(269)
 		p.GetErrorHandler().Sync(p)
 
 		switch p.GetTokenStream().LA(1) {
 		case FeatureParserLBracket, FeatureParserChar:
 			{
-				p.SetState(243)
+				p.SetState(266)
 				p.ContentNoQuotes()
 			}
 
 		case FeatureParserSpace:
 			{
-				p.SetState(244)
+				p.SetState(267)
 				p.Match(FeatureParserSpace)
 			}
 
 		case FeatureParserQuote:
 			{
-				p.SetState(245)
+				p.SetState(268)
 				p.Parameter()
 			}
 
@@ -3208,9 +3453,366 @@ func (p *FeatureParser) StepText() (localctx IStepTextContext) {
 			panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 		}
 
-		p.SetState(250)
+		p.SetState(273)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
+	}
+
+	return localctx
+}
+
+// ITableContext is an interface to support dynamic dispatch.
+type ITableContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsTableContext differentiates from other interfaces.
+	IsTableContext()
+}
+
+type TableContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyTableContext() *TableContext {
+	var p = new(TableContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = FeatureParserRULE_table
+	return p
+}
+
+func (*TableContext) IsTableContext() {}
+
+func NewTableContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *TableContext {
+	var p = new(TableContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = FeatureParserRULE_table
+
+	return p
+}
+
+func (s *TableContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *TableContext) TableHeader() ITableHeaderContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ITableHeaderContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ITableHeaderContext)
+}
+
+func (s *TableContext) AllRow() []IRowContext {
+	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IRowContext)(nil)).Elem())
+	var tst = make([]IRowContext, len(ts))
+
+	for i, t := range ts {
+		if t != nil {
+			tst[i] = t.(IRowContext)
+		}
+	}
+
+	return tst
+}
+
+func (s *TableContext) Row(i int) IRowContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IRowContext)(nil)).Elem(), i)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IRowContext)
+}
+
+func (s *TableContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *TableContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *TableContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(FeatureListener); ok {
+		listenerT.EnterTable(s)
+	}
+}
+
+func (s *TableContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(FeatureListener); ok {
+		listenerT.ExitTable(s)
+	}
+}
+
+func (s *TableContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case FeatureVisitor:
+		return t.VisitTable(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *FeatureParser) Table() (localctx ITableContext) {
+	localctx = NewTableContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 36, FeatureParserRULE_table)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	var _alt int
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(274)
+		p.TableHeader()
+	}
+	p.SetState(278)
+	p.GetErrorHandler().Sync(p)
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 33, p.GetParserRuleContext())
+
+	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
+		if _alt == 1 {
+			{
+				p.SetState(275)
+				p.Row()
+			}
+
+		}
+		p.SetState(280)
+		p.GetErrorHandler().Sync(p)
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 33, p.GetParserRuleContext())
+	}
+
+	return localctx
+}
+
+// ITableHeaderContext is an interface to support dynamic dispatch.
+type ITableHeaderContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsTableHeaderContext differentiates from other interfaces.
+	IsTableHeaderContext()
+}
+
+type TableHeaderContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyTableHeaderContext() *TableHeaderContext {
+	var p = new(TableHeaderContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = FeatureParserRULE_tableHeader
+	return p
+}
+
+func (*TableHeaderContext) IsTableHeaderContext() {}
+
+func NewTableHeaderContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *TableHeaderContext {
+	var p = new(TableHeaderContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = FeatureParserRULE_tableHeader
+
+	return p
+}
+
+func (s *TableHeaderContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *TableHeaderContext) Pipe() antlr.TerminalNode {
+	return s.GetToken(FeatureParserPipe, 0)
+}
+
+func (s *TableHeaderContext) EOF() antlr.TerminalNode {
+	return s.GetToken(FeatureParserEOF, 0)
+}
+
+func (s *TableHeaderContext) AllSpace() []antlr.TerminalNode {
+	return s.GetTokens(FeatureParserSpace)
+}
+
+func (s *TableHeaderContext) Space(i int) antlr.TerminalNode {
+	return s.GetToken(FeatureParserSpace, i)
+}
+
+func (s *TableHeaderContext) AllCell() []ICellContext {
+	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*ICellContext)(nil)).Elem())
+	var tst = make([]ICellContext, len(ts))
+
+	for i, t := range ts {
+		if t != nil {
+			tst[i] = t.(ICellContext)
+		}
+	}
+
+	return tst
+}
+
+func (s *TableHeaderContext) Cell(i int) ICellContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICellContext)(nil)).Elem(), i)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ICellContext)
+}
+
+func (s *TableHeaderContext) AllNewLine() []antlr.TerminalNode {
+	return s.GetTokens(FeatureParserNewLine)
+}
+
+func (s *TableHeaderContext) NewLine(i int) antlr.TerminalNode {
+	return s.GetToken(FeatureParserNewLine, i)
+}
+
+func (s *TableHeaderContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *TableHeaderContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *TableHeaderContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(FeatureListener); ok {
+		listenerT.EnterTableHeader(s)
+	}
+}
+
+func (s *TableHeaderContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(FeatureListener); ok {
+		listenerT.ExitTableHeader(s)
+	}
+}
+
+func (s *TableHeaderContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case FeatureVisitor:
+		return t.VisitTableHeader(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *FeatureParser) TableHeader() (localctx ITableHeaderContext) {
+	localctx = NewTableHeaderContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 38, FeatureParserRULE_tableHeader)
+	var _la int
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	var _alt int
+
+	p.EnterOuterAlt(localctx, 1)
+	p.SetState(284)
+	p.GetErrorHandler().Sync(p)
+	_la = p.GetTokenStream().LA(1)
+
+	for _la == FeatureParserSpace {
+		{
+			p.SetState(281)
+			p.Match(FeatureParserSpace)
+		}
+
+		p.SetState(286)
+		p.GetErrorHandler().Sync(p)
+		_la = p.GetTokenStream().LA(1)
+	}
+	{
+		p.SetState(287)
+		p.Match(FeatureParserPipe)
+	}
+	p.SetState(289)
+	p.GetErrorHandler().Sync(p)
+	_la = p.GetTokenStream().LA(1)
+
+	for ok := true; ok; ok = (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<FeatureParserSpace)|(1<<FeatureParserLBracket)|(1<<FeatureParserChar))) != 0) {
+		{
+			p.SetState(288)
+			p.Cell()
+		}
+
+		p.SetState(291)
+		p.GetErrorHandler().Sync(p)
+		_la = p.GetTokenStream().LA(1)
+	}
+	p.SetState(299)
+	p.GetErrorHandler().Sync(p)
+
+	switch p.GetTokenStream().LA(1) {
+	case FeatureParserNewLine:
+		p.SetState(294)
+		p.GetErrorHandler().Sync(p)
+		_alt = 1
+		for ok := true; ok; ok = _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
+			switch _alt {
+			case 1:
+				{
+					p.SetState(293)
+					p.Match(FeatureParserNewLine)
+				}
+
+			default:
+				panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+			}
+
+			p.SetState(296)
+			p.GetErrorHandler().Sync(p)
+			_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 36, p.GetParserRuleContext())
+		}
+
+	case FeatureParserEOF:
+		{
+			p.SetState(298)
+			p.Match(FeatureParserEOF)
+		}
+
+	default:
+		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 	}
 
 	return localctx
@@ -3333,7 +3935,7 @@ func (s *RowContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *FeatureParser) Row() (localctx IRowContext) {
 	localctx = NewRowContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 34, FeatureParserRULE_row)
+	p.EnterRule(localctx, 40, FeatureParserRULE_row)
 	var _la int
 
 	defer func() {
@@ -3355,51 +3957,51 @@ func (p *FeatureParser) Row() (localctx IRowContext) {
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(254)
+	p.SetState(304)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == FeatureParserSpace {
 		{
-			p.SetState(251)
+			p.SetState(301)
 			p.Match(FeatureParserSpace)
 		}
 
-		p.SetState(256)
+		p.SetState(306)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(257)
+		p.SetState(307)
 		p.Match(FeatureParserPipe)
 	}
-	p.SetState(259)
+	p.SetState(309)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for ok := true; ok; ok = (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<FeatureParserSpace)|(1<<FeatureParserLBracket)|(1<<FeatureParserChar))) != 0) {
 		{
-			p.SetState(258)
+			p.SetState(308)
 			p.Cell()
 		}
 
-		p.SetState(261)
+		p.SetState(311)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
-	p.SetState(269)
+	p.SetState(319)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case FeatureParserNewLine:
-		p.SetState(264)
+		p.SetState(314)
 		p.GetErrorHandler().Sync(p)
 		_alt = 1
 		for ok := true; ok; ok = _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 			switch _alt {
 			case 1:
 				{
-					p.SetState(263)
+					p.SetState(313)
 					p.Match(FeatureParserNewLine)
 				}
 
@@ -3407,14 +4009,14 @@ func (p *FeatureParser) Row() (localctx IRowContext) {
 				panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 			}
 
-			p.SetState(266)
+			p.SetState(316)
 			p.GetErrorHandler().Sync(p)
-			_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 33, p.GetParserRuleContext())
+			_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 40, p.GetParserRuleContext())
 		}
 
 	case FeatureParserEOF:
 		{
-			p.SetState(268)
+			p.SetState(318)
 			p.Match(FeatureParserEOF)
 		}
 
@@ -3517,7 +4119,7 @@ func (s *CellContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *FeatureParser) Cell() (localctx ICellContext) {
 	localctx = NewCellContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 36, FeatureParserRULE_cell)
+	p.EnterRule(localctx, 42, FeatureParserRULE_cell)
 	var _la int
 
 	defer func() {
@@ -3537,26 +4139,26 @@ func (p *FeatureParser) Cell() (localctx ICellContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(274)
+	p.SetState(324)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == FeatureParserSpace {
 		{
-			p.SetState(271)
+			p.SetState(321)
 			p.Match(FeatureParserSpace)
 		}
 
-		p.SetState(276)
+		p.SetState(326)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(277)
+		p.SetState(327)
 		p.ContentNoPipes()
 	}
 	{
-		p.SetState(278)
+		p.SetState(328)
 		p.Match(FeatureParserPipe)
 	}
 
@@ -3651,7 +4253,7 @@ func (s *ParameterContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *FeatureParser) Parameter() (localctx IParameterContext) {
 	localctx = NewParameterContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 38, FeatureParserRULE_parameter)
+	p.EnterRule(localctx, 44, FeatureParserRULE_parameter)
 
 	defer func() {
 		p.ExitRule()
@@ -3671,15 +4273,15 @@ func (p *FeatureParser) Parameter() (localctx IParameterContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(280)
+		p.SetState(330)
 		p.Match(FeatureParserQuote)
 	}
 	{
-		p.SetState(281)
+		p.SetState(331)
 		p.AnyText()
 	}
 	{
-		p.SetState(282)
+		p.SetState(332)
 		p.Match(FeatureParserQuote)
 	}
 
@@ -3804,7 +4406,7 @@ func (s *ContentNoQuotesContext) Accept(visitor antlr.ParseTreeVisitor) interfac
 
 func (p *FeatureParser) ContentNoQuotes() (localctx IContentNoQuotesContext) {
 	localctx = NewContentNoQuotesContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 40, FeatureParserRULE_contentNoQuotes)
+	p.EnterRule(localctx, 46, FeatureParserRULE_contentNoQuotes)
 	var _la int
 
 	defer func() {
@@ -3827,7 +4429,7 @@ func (p *FeatureParser) ContentNoQuotes() (localctx IContentNoQuotesContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(284)
+		p.SetState(334)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == FeatureParserLBracket || _la == FeatureParserChar) {
@@ -3837,14 +4439,14 @@ func (p *FeatureParser) ContentNoQuotes() (localctx IContentNoQuotesContext) {
 			p.Consume()
 		}
 	}
-	p.SetState(288)
+	p.SetState(338)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 36, p.GetParserRuleContext())
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 43, p.GetParserRuleContext())
 
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			{
-				p.SetState(285)
+				p.SetState(335)
 				_la = p.GetTokenStream().LA(1)
 
 				if !(((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<FeatureParserSpace)|(1<<FeatureParserLBracket)|(1<<FeatureParserRBracket)|(1<<FeatureParserAt)|(1<<FeatureParserPipe)|(1<<FeatureParserChar))) != 0) {
@@ -3856,9 +4458,9 @@ func (p *FeatureParser) ContentNoQuotes() (localctx IContentNoQuotesContext) {
 			}
 
 		}
-		p.SetState(290)
+		p.SetState(340)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 36, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 43, p.GetParserRuleContext())
 	}
 
 	return localctx
@@ -3982,7 +4584,7 @@ func (s *ContentNoPipesContext) Accept(visitor antlr.ParseTreeVisitor) interface
 
 func (p *FeatureParser) ContentNoPipes() (localctx IContentNoPipesContext) {
 	localctx = NewContentNoPipesContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 42, FeatureParserRULE_contentNoPipes)
+	p.EnterRule(localctx, 48, FeatureParserRULE_contentNoPipes)
 	var _la int
 
 	defer func() {
@@ -4003,7 +4605,7 @@ func (p *FeatureParser) ContentNoPipes() (localctx IContentNoPipesContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(291)
+		p.SetState(341)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == FeatureParserLBracket || _la == FeatureParserChar) {
@@ -4013,13 +4615,13 @@ func (p *FeatureParser) ContentNoPipes() (localctx IContentNoPipesContext) {
 			p.Consume()
 		}
 	}
-	p.SetState(295)
+	p.SetState(345)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	for ((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<FeatureParserSpace)|(1<<FeatureParserQuote)|(1<<FeatureParserLBracket)|(1<<FeatureParserRBracket)|(1<<FeatureParserAt)|(1<<FeatureParserChar))) != 0 {
 		{
-			p.SetState(292)
+			p.SetState(342)
 			_la = p.GetTokenStream().LA(1)
 
 			if !(((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<FeatureParserSpace)|(1<<FeatureParserQuote)|(1<<FeatureParserLBracket)|(1<<FeatureParserRBracket)|(1<<FeatureParserAt)|(1<<FeatureParserChar))) != 0) {
@@ -4030,7 +4632,7 @@ func (p *FeatureParser) ContentNoPipes() (localctx IContentNoPipesContext) {
 			}
 		}
 
-		p.SetState(297)
+		p.SetState(347)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
@@ -4164,7 +4766,7 @@ func (s *ContentContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *FeatureParser) Content() (localctx IContentContext) {
 	localctx = NewContentContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 44, FeatureParserRULE_content)
+	p.EnterRule(localctx, 50, FeatureParserRULE_content)
 	var _la int
 
 	defer func() {
@@ -4187,7 +4789,7 @@ func (p *FeatureParser) Content() (localctx IContentContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(298)
+		p.SetState(348)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == FeatureParserLBracket || _la == FeatureParserChar) {
@@ -4197,14 +4799,14 @@ func (p *FeatureParser) Content() (localctx IContentContext) {
 			p.Consume()
 		}
 	}
-	p.SetState(302)
+	p.SetState(352)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 38, p.GetParserRuleContext())
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 45, p.GetParserRuleContext())
 
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			{
-				p.SetState(299)
+				p.SetState(349)
 				_la = p.GetTokenStream().LA(1)
 
 				if !(((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<FeatureParserSpace)|(1<<FeatureParserQuote)|(1<<FeatureParserLBracket)|(1<<FeatureParserRBracket)|(1<<FeatureParserAt)|(1<<FeatureParserPipe)|(1<<FeatureParserChar))) != 0) {
@@ -4216,9 +4818,277 @@ func (p *FeatureParser) Content() (localctx IContentContext) {
 			}
 
 		}
-		p.SetState(304)
+		p.SetState(354)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 38, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 45, p.GetParserRuleContext())
+	}
+
+	return localctx
+}
+
+// ICommentContext is an interface to support dynamic dispatch.
+type ICommentContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsCommentContext differentiates from other interfaces.
+	IsCommentContext()
+}
+
+type CommentContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyCommentContext() *CommentContext {
+	var p = new(CommentContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = FeatureParserRULE_comment
+	return p
+}
+
+func (*CommentContext) IsCommentContext() {}
+
+func NewCommentContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CommentContext {
+	var p = new(CommentContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = FeatureParserRULE_comment
+
+	return p
+}
+
+func (s *CommentContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *CommentContext) CommentText() ICommentTextContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICommentTextContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ICommentTextContext)
+}
+
+func (s *CommentContext) NewLine() antlr.TerminalNode {
+	return s.GetToken(FeatureParserNewLine, 0)
+}
+
+func (s *CommentContext) AllSpace() []antlr.TerminalNode {
+	return s.GetTokens(FeatureParserSpace)
+}
+
+func (s *CommentContext) Space(i int) antlr.TerminalNode {
+	return s.GetToken(FeatureParserSpace, i)
+}
+
+func (s *CommentContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *CommentContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *CommentContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(FeatureListener); ok {
+		listenerT.EnterComment(s)
+	}
+}
+
+func (s *CommentContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(FeatureListener); ok {
+		listenerT.ExitComment(s)
+	}
+}
+
+func (s *CommentContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case FeatureVisitor:
+		return t.VisitComment(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *FeatureParser) Comment() (localctx ICommentContext) {
+	localctx = NewCommentContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 52, FeatureParserRULE_comment)
+	var _la int
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	var _alt int
+
+	p.EnterOuterAlt(localctx, 1)
+	p.SetState(358)
+	p.GetErrorHandler().Sync(p)
+	_la = p.GetTokenStream().LA(1)
+
+	for _la == FeatureParserSpace {
+		{
+			p.SetState(355)
+			p.Match(FeatureParserSpace)
+		}
+
+		p.SetState(360)
+		p.GetErrorHandler().Sync(p)
+		_la = p.GetTokenStream().LA(1)
+	}
+	{
+		p.SetState(361)
+		p.Match(FeatureParserT__0)
+	}
+	p.SetState(365)
+	p.GetErrorHandler().Sync(p)
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 47, p.GetParserRuleContext())
+
+	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
+		if _alt == 1 {
+			{
+				p.SetState(362)
+				p.Match(FeatureParserSpace)
+			}
+
+		}
+		p.SetState(367)
+		p.GetErrorHandler().Sync(p)
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 47, p.GetParserRuleContext())
+	}
+	{
+		p.SetState(368)
+		p.CommentText()
+	}
+	{
+		p.SetState(369)
+		p.Match(FeatureParserNewLine)
+	}
+
+	return localctx
+}
+
+// ICommentTextContext is an interface to support dynamic dispatch.
+type ICommentTextContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsCommentTextContext differentiates from other interfaces.
+	IsCommentTextContext()
+}
+
+type CommentTextContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyCommentTextContext() *CommentTextContext {
+	var p = new(CommentTextContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = FeatureParserRULE_commentText
+	return p
+}
+
+func (*CommentTextContext) IsCommentTextContext() {}
+
+func NewCommentTextContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CommentTextContext {
+	var p = new(CommentTextContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = FeatureParserRULE_commentText
+
+	return p
+}
+
+func (s *CommentTextContext) GetParser() antlr.Parser { return s.parser }
+func (s *CommentTextContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *CommentTextContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *CommentTextContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(FeatureListener); ok {
+		listenerT.EnterCommentText(s)
+	}
+}
+
+func (s *CommentTextContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(FeatureListener); ok {
+		listenerT.ExitCommentText(s)
+	}
+}
+
+func (s *CommentTextContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case FeatureVisitor:
+		return t.VisitCommentText(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *FeatureParser) CommentText() (localctx ICommentTextContext) {
+	localctx = NewCommentTextContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 54, FeatureParserRULE_commentText)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	var _alt int
+
+	p.EnterOuterAlt(localctx, 1)
+	p.SetState(374)
+	p.GetErrorHandler().Sync(p)
+	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 48, p.GetParserRuleContext())
+
+	for _alt != 1 && _alt != antlr.ATNInvalidAltNumber {
+		if _alt == 1+1 {
+			p.SetState(371)
+			p.MatchWildcard()
+
+		}
+		p.SetState(376)
+		p.GetErrorHandler().Sync(p)
+		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 48, p.GetParserRuleContext())
 	}
 
 	return localctx
