@@ -39,6 +39,7 @@ var infoTemplate = `# id: {{.Id}}
 # priority: {{.Priority}}
 # status: {{.Status}}
 # author: {{.Author}}
+# title: {{.Title}}
 # language: zh-CN`
 
 var storyTemplate = infoTemplate + `
@@ -157,16 +158,17 @@ func updateStory(filePath string, model *StoryModel) {
 
 	result := buffer.String()
 
+	writeNewTemplateToFile(filePath, result)
+}
+
+func writeNewTemplateToFile(filePath string, result string) {
 	input, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		log.Fatalln(err)
 	}
-
 	lines := strings.Split(string(input), "\n")
 	newLines := make([]string, len(lines)-commentPosition.End)
-
 	copy(newLines, lines[commentPosition.End:])
-
 	output := result + "\n" + strings.Join(newLines, "\n")
 	err = ioutil.WriteFile(filePath, []byte(output), 0644)
 	if err != nil {
