@@ -14,8 +14,8 @@ import (
 )
 
 type StoryDate struct {
-	StartDate time.Time `json:"start"`
-	EndDate   time.Time `json:"end"`
+	StartDate time.Time `json:"startDate"`
+	EndDate   time.Time `json:"endDate"`
 }
 
 type StoryModel struct {

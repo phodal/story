@@ -1,17 +1,17 @@
 // based on: https://github.com/cosenmarco/yabdd
 grammar Feature;
 
-feature: comment* featureHeader featureBody (NewLine+ | EOF)?;
+feature: comment* (featureHeader featureBody)* EOF ;
 
 featureHeader: (Space | NewLine)* tags? Feature Space* content NewLine+;
 
 featureBody: background? scenario+;
 
-background: (Space | NewLine)* tags* Background Space* content? (NewLine | EOF) blockBody (NewLine | EOF);
+background: (Space | NewLine)* tags* Background Space* content? NewLine blockBody NewLine;
 
 blockBody: (given | when | or | then | and | example)*;
 
-scenario: (Space | NewLine)* tags* Space* Scenario Space* content (NewLine | EOF) blockBody;
+scenario: (Space | NewLine)* tags* Space* Scenario Space* content NewLine blockBody;
 
 // Annotations
 
@@ -39,15 +39,15 @@ example: (Space | NewLine)* Examples step;
 
 step: Space* stepContent;
 
-stepContent: stepText table? (NewLine+ | EOF);
+stepContent: stepText table? NewLine+;
 
 stepText: (contentNoQuotes | Space | parameter)*;
 
 table: tableHeader row*;
 
-tableHeader: Space* Pipe cell+ (NewLine+ | EOF);
+tableHeader: Space* Pipe cell+ NewLine+;
 
-row: Space* Pipe cell+ (NewLine+ | EOF);
+row: Space* Pipe cell+ NewLine+;
 
 cell: Space* contentNoPipes Pipe;
 
@@ -69,7 +69,7 @@ commentValue: IDENTIFIER;
 
 IDENTIFIER: LetterOrDigit LetterOrDigit*;
 
-EmptyLine: NewLine Space+ (NewLine | EOF) -> skip;
+EmptyLine: NewLine Space+ NewLine -> skip;
 
 And: 'And ' | '而且' | '并且' | '同时' ;
 Or: 'Or ' | '或者';
@@ -99,6 +99,8 @@ fragment LetterOrDigit
 
 fragment Letter
     : [a-zA-Z$_-] // these are the "java letters" below 0x7F
+    | [0-9]COLON[0-9]
+    | [0-9]'+'[0-9]
     | ~[\u0000-\u007F\uD800-\uDBFF] // covers all characters above 0x7F which are not a surrogate
     | [\uD800-\uDBFF] [\uDC00-\uDFFF] // covers UTF-16 surrogate pairs encodings for U+10000 to U+10FFFF
     ;

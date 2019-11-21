@@ -6,6 +6,7 @@ import (
 	. "./story"
 	"encoding/json"
 	"log"
+	"time"
 )
 
 var storyModel StoryModel
@@ -21,5 +22,7 @@ func main() {
 	}
 
 	_ = json.Unmarshal(jsonStr, &storyModel)
+	storyModel.StartDate, _ = time.Parse(time.RFC3339, results["startDate"])
+	storyModel.EndDate, _ = time.Parse(time.RFC3339, results["endDate"])
 	log.Println(storyModel)
 }
