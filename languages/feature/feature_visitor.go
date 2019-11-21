@@ -91,4 +91,7 @@ type FeatureVisitor interface {
 
 	// Visit a parse tree produced by FeatureParser#commentText.
 	VisitCommentText(ctx *CommentTextContext) interface{}
+
+	// Visit a parse tree produced by FeatureParser#commentValue.
+	VisitCommentValue(ctx *CommentValueContext) interface{}
 }

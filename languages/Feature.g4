@@ -1,9 +1,9 @@
 // based on: https://github.com/cosenmarco/yabdd
 grammar Feature;
 
-feature: comment* featureHeader featureBody;
+feature: comment* featureHeader featureBody (NewLine+ | EOF)?;
 
-featureHeader: (Space | NewLine)* tags* Feature Space* content NewLine+;
+featureHeader: (Space | NewLine)* tags? Feature Space* content NewLine+;
 
 featureBody: background? scenario+;
 
@@ -37,13 +37,13 @@ example: (Space | NewLine)* Examples step;
 
 // Steps and data tables
 
-step: Space* stepContent table?;
+step: Space* stepContent;
 
-stepContent: stepText (NewLine+ | EOF);
+stepContent: stepText table? (NewLine+ | EOF);
 
 stepText: (contentNoQuotes | Space | parameter)*;
 
-table: tableHeader row* ;
+table: tableHeader row*;
 
 tableHeader: Space* Pipe cell+ (NewLine+ | EOF);
 
@@ -61,11 +61,13 @@ contentNoPipes: (Char|LBracket) (Char|LBracket|RBracket|At|Quote|Space)*;
 
 content: (Char|LBracket) (Char|LBracket|RBracket|At|Quote|Pipe|Space)*;
 
-comment: Space* '#' Space* commentText NewLine;
+comment: '#' Space* commentText NewLine;
 
-commentText: .*?;
+commentText: IDENTIFIER ':' Space* commentValue;
 
-IDENTIFIER: Letter LetterOrDigit*;
+commentValue: IDENTIFIER;
+
+IDENTIFIER: LetterOrDigit LetterOrDigit*;
 
 EmptyLine: NewLine Space+ (NewLine | EOF) -> skip;
 
@@ -75,9 +77,9 @@ Given: 'Given ' | '假如' | '假设' | '假定' ;
 When: 'When ' | '当';
 Then: 'Then ' | '那么';
 Examples: 'Example ' | '例子';
-Background: ('Background' | '背景') [ ]* COLON;
-Scenario: ('Scenario' | '场景' | '剧本') [ ]* COLON;
-Feature: ('Feature' | '功能') [ ]* COLON;
+Background: 'Background' | '背景' [ ] Space? COLON;
+Scenario: 'Scenario' | '场景' | '剧本' Space? COLON;
+Feature: 'Feature' | '功能' Space? COLON;
 
 Space : [ \t];
 NewLine : '\r\n' | '\n';
@@ -96,7 +98,7 @@ fragment LetterOrDigit
     ;
 
 fragment Letter
-    : [a-zA-Z$_] // these are the "java letters" below 0x7F
+    : [a-zA-Z$_-] // these are the "java letters" below 0x7F
     | ~[\u0000-\u007F\uD800-\uDBFF] // covers all characters above 0x7F which are not a surrogate
     | [\uD800-\uDBFF] [\uDC00-\uDFFF] // covers UTF-16 surrogate pairs encodings for U+10000 to U+10FFFF
     ;

@@ -119,3 +119,7 @@ func (v *BaseFeatureVisitor) VisitComment(ctx *CommentContext) interface{} {
 func (v *BaseFeatureVisitor) VisitCommentText(ctx *CommentTextContext) interface{} {
 	return v.VisitChildren(ctx)
 }
+
+func (v *BaseFeatureVisitor) VisitCommentValue(ctx *CommentValueContext) interface{} {
+	return v.VisitChildren(ctx)
+}

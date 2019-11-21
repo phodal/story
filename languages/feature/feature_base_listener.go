@@ -188,3 +188,9 @@ func (s *BaseFeatureListener) EnterCommentText(ctx *CommentTextContext) {}
 
 // ExitCommentText is called when production commentText is exited.
 func (s *BaseFeatureListener) ExitCommentText(ctx *CommentTextContext) {}
+
+// EnterCommentValue is called when production commentValue is entered.
+func (s *BaseFeatureListener) EnterCommentValue(ctx *CommentValueContext) {}
+
+// ExitCommentValue is called when production commentValue is exited.
+func (s *BaseFeatureListener) ExitCommentValue(ctx *CommentValueContext) {}

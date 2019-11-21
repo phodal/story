@@ -92,6 +92,9 @@ type FeatureListener interface {
 	// EnterCommentText is called when entering the commentText production.
 	EnterCommentText(c *CommentTextContext)
 
+	// EnterCommentValue is called when entering the commentValue production.
+	EnterCommentValue(c *CommentValueContext)
+
 	// ExitFeature is called when exiting the feature production.
 	ExitFeature(c *FeatureContext)
 
@@ -175,4 +178,7 @@ type FeatureListener interface {
 
 	// ExitCommentText is called when exiting the commentText production.
 	ExitCommentText(c *CommentTextContext)
+
+	// ExitCommentValue is called when exiting the commentValue production.
+	ExitCommentValue(c *CommentValueContext)
 }

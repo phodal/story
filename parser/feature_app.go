@@ -10,16 +10,17 @@ func NewFeatureApp() *FeatureApp {
 }
 
 type FeatureApp struct {
-
 }
 
-func (j *FeatureApp) Start(path string) {
+func (j *FeatureApp) Start(path string) map[string]string {
 	context := (*FeatureApp)(nil).ProcessFile(path).Feature()
 	listener := NewFeatureAppListener()
 
 	antlr.NewParseTreeWalker().Walk(listener, context)
 
-	//getComments := listener.getComments()
+	commentsMap := listener.getComments()
+
+	return commentsMap
 }
 
 func (j *FeatureApp) ProcessFile(path string) *FeatureParser {

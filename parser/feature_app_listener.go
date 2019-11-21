@@ -2,11 +2,9 @@ package parser
 
 import (
 	. "../languages/feature"
-	"fmt"
-	"reflect"
 )
 
-var comments []string
+var comments = make(map[string]string)
 
 func NewFeatureAppListener() *FeatureAppListener {
 	return &FeatureAppListener{}
@@ -25,12 +23,12 @@ func (s *FeatureAppListener) EnterAnd(ctx *AndContext) {
 }
 
 func (s *FeatureAppListener) EnterComment(ctx *CommentContext) {
-	//text := ctx.CommentText().GetText()
-	//comments = append(comments, text)
-	//fmt.Println(ctx.CommentText().GetChild(0))
-	//fmt.Println(ctx.CommentText().GetChild(2))
-	fmt.Println(ctx.CommentText().GetChildCount())
-	fmt.Println(reflect.TypeOf(ctx.CommentText().GetChild(0)).String())
+	commentTextCtx := ctx.CommentText().(*CommentTextContext)
+	identifier := commentTextCtx.IDENTIFIER()
+	commentValue := commentTextCtx.CommentValue()
+	if identifier != nil && commentValue != nil {
+		comments[identifier.GetText()] = commentValue.GetText()
+	}
 }
 
 func (s *FeatureAppListener) EnterStep(ctx *StepContext) {
@@ -42,17 +40,13 @@ func (s *FeatureAppListener) EnterRow(ctx *RowContext) {
 }
 
 func (s *FeatureAppListener) EnterCell(ctx *CellContext) {
-	//fmt.Println(ctx.ContentNoPipes().GetText())
+
 }
 
 func (s *FeatureAppListener) EnterTableHeader(ctx *TableHeaderContext) {
-	//cells := ctx.AllCell()
-	//for _, cell := range cells {
-	//	content := cell.(*CellContext).ContentNoPipes()
-	//	fmt.Println(content.GetText())
-	//}
+
 }
 
-func (s *FeatureAppListener) getComments() []string {
+func (s *FeatureAppListener) getComments() map[string]string {
 	return comments
 }
