@@ -1,4 +1,4 @@
-grammar feature;
+grammar Feature;
 
 compilationUnit: NEWLINE* comment? NEWLINE* SPACE* tags? NEWLINE* SPACE* feature_keyword SPACE* line_to_eol NEWLINE+ (feature_elements .)* feature_elements EOF;
 
@@ -65,4 +65,4 @@ ID : 	('a'..'z'|'A'..'Z'|'_')+ ;
 
 NEWLINE:  	(('\r')? '\n' )+ ;
 
-SPACE: 	(' '|'\t')+ {skip();};
+SPACE: 	(' '|'\t')+ -> channel(HIDDEN);

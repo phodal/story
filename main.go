@@ -1,9 +1,13 @@
 package main
 
 import (
-	"./cmd"
+	//"./cmd"
+	. "./parser"
 )
 
 func main() {
-	cmd.Execute()
+	//cmd.Execute()
+
+	app := NewFeatureApp()
+	app.Start("tests/test.feature")
 }
