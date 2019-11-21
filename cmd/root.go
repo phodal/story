@@ -29,9 +29,6 @@ var (
 		Run: func(cmd *cobra.Command, args []string) {
 			userName := viper.GetString("user")
 			_ = os.MkdirAll("stories", os.ModePerm)
-			_ = os.MkdirAll("stories/db", os.ModePerm)
-			_ = os.MkdirAll("stories/docs", os.ModePerm)
-			InitStory()
 
 			create := cmd.Flag("create").Value.String()
 
@@ -49,7 +46,7 @@ var (
 				table.SetHeader([]string{"Id", "Title", "Date", "Status", "Author"})
 
 				for _, v := range stories {
-					str := []string{v.Id, v.Title, v.StartDate.String(), v.Status, v.Author}
+					str := []string{v.Id, v.Title, v.StartDate, v.Status, v.Author}
 					table.Append(str)
 				}
 				table.Render()

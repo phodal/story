@@ -1,21 +1,22 @@
 package story
 
 import (
-	"crypto/md5"
+	. "../parser"
 	"encoding/json"
 	"fmt"
 	"github.com/teris-io/shortid"
-	"hash"
+	"io/ioutil"
 	"log"
 	"os"
 	"regexp"
+	"strings"
 	"text/template"
 	"time"
 )
 
 type StoryDate struct {
-	StartDate time.Time `json:"startDate"`
-	EndDate   time.Time `json:"endDate"`
+	StartDate string `json:"startDate"`
+	EndDate   string `json:"endDate"`
 }
 
 type StoryModel struct {
@@ -32,52 +33,50 @@ type StoryModel struct {
 	Hash         string
 }
 
-var driver *Driver
-var fileMd5 hash.Hash
+var storyTemplate = `# id: {{.Id}}
+# startDate: {{.StartDate}}
+# endDate: {{.EndDate}}
+# priority: 1
+# status:
+# authors: {{.Author}}
+# language: zh-CN
+@math
+功能:{{.Title}}
 
-var storyTemplate = `作为
+  背景:
+    你好啊®
 
-我想要{{.Title}}
+  场景: 大纲
+    假设: 我需要
+    当: 我blbla
+    并且: 这很不错
+    那么: 就好了
 
-这样就能
 `
-
-func InitStory() {
-	driver, _ = NewZhu("stories/db")
-	fileMd5 = md5.New()
-
-	SyncStory()
-}
 
 func SyncStory() {
 
 }
 
 func ListStory() []StoryModel {
-	storyList, err := driver.ReadAll("stories")
-	if err != nil {
-		log.Fatal(err)
-	}
-
 	stories := []StoryModel{}
-	for _, f := range storyList {
-		story := StoryModel{}
-		if err := json.Unmarshal([]byte(f), &story); err != nil {
-			fmt.Println("Error", err)
-		}
-		stories = append(stories, story)
-	}
-
+	//for _, f := range storyList {
+	//	story := StoryModel{}
+	//	if err := json.Unmarshal([]byte(f), &story); err != nil {
+	//		fmt.Println("Error", err)
+	//	}
+	//	stories = append(stories, story)
+	//}
+	//
 	return stories
 }
 
 func CreateStory(content string) {
 	storyId := buildStoryId()
 
-	date := &StoryDate{time.Now(), time.Now()}
+	date := &StoryDate{getNow(), getNow()}
 	story := &StoryModel{storyId, content, "", "", "", *date, "", "", "", "", ""}
 
-	t, _ := template.New("story").Parse(storyTemplate)
 	filePath := getFilePath(storyId, content)
 	file, err := os.Create(filePath)
 	hashValue, err := Md5SumFile(filePath)
@@ -87,21 +86,25 @@ func CreateStory(content string) {
 	}
 
 	story.Hash = string(hashValue[:])
+	saveStory(file, story)
+}
+
+func saveStory(file *os.File, story *StoryModel) {
+	t, err := template.New("story").Parse(storyTemplate)
+	if err != nil {
+		log.Println("template error: ", err)
+		return
+	}
 	err = t.Execute(file, &story)
 	if err != nil {
 		log.Println("template file: ", err)
 		return
 	}
-
-	err = driver.Write("stories", story.Id, story)
-	if err != nil {
-		log.Fatal(err)
-	}
 }
 
 func getFilePath(u1 string, content string) string {
 	fileName := u1 + "-" + updateFileName(content)
-	filePath := "stories/docs/" + fileName + ".md"
+	filePath := "stories/" + fileName + ".feature"
 	return filePath
 }
 
@@ -116,34 +119,68 @@ func buildStoryId() string {
 }
 
 func PickStory(id string, userName string) {
-	var story StoryModel
-	err := driver.Read("stories", id, &story)
-	if err != nil {
-		log.Fatal(err)
-	}
 
-	story.Author = userName
-
-	err = driver.Write("stories", id, &story)
-	if err != nil {
-		log.Fatal(err)
-	}
 }
 
 func ChangeStoryStatus(id string, status string) {
 	var story StoryModel
-	err := driver.Read("stories", id, &story)
-	if err != nil {
-		log.Fatal(err)
+
+	fileName := getFeatureFileNameById(id)
+	if fileName == "" {
+		log.Fatal("error id, %s", id)
 	}
 
+	filePath := "stories/" + fileName
+	story = parseFeature(filePath)
 	story.Status = status
 	if status == "done" {
-		story.EndDate = time.Now()
+		story.EndDate = getNow()
 	}
 
-	err = driver.Write("stories", id, &story)
+	file, e := os.OpenFile(filePath, os.O_WRONLY, os.ModeAppend)
+	if e != nil {
+		log.Fatal("open file error %s:", e)
+		return
+	}
+	saveStory(file, &story)
+}
+
+func getNow() string {
+	return time.Now().UTC().Format(time.RFC3339)
+}
+
+func getFeatureFileNameById(id string) string {
+	files, err := ioutil.ReadDir("stories/")
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	for _, f := range files {
+		fmt.Println(f.Name(), id)
+		if strings.Contains(f.Name(), id) {
+			return f.Name()
+		}
+	}
+
+	return ""
+}
+
+func parseFeature(path string) StoryModel {
+	var storyModel StoryModel
+	app := NewFeatureApp()
+	results := app.Start(path)
+	jsonStr, err := json.Marshal(results)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(string(jsonStr[:]))
+	fmt.Println(results["startDate"])
+	fmt.Println(results["endDate"])
+	fmt.Println("....")
+
+	_ = json.Unmarshal(jsonStr, &storyModel)
+	fmt.Println(storyModel.StartDate, storyModel.EndDate)
+	fmt.Println("--------")
+	return storyModel
 }
