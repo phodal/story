@@ -23,6 +23,21 @@ func GetFeatureFileNameById(id string) string {
 	return ""
 }
 
+func GetFeaturesByPath() []StoryModel {
+	files, err := ioutil.ReadDir("stories/")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var stories []StoryModel
+	for _, f := range files {
+		feature := ParseFeature("stories/" + f.Name())
+		stories = append(stories, feature)
+	}
+
+	return stories
+}
+
 func ParseFeature(path string) StoryModel {
 	var storyModel StoryModel
 	app := NewFeatureApp()

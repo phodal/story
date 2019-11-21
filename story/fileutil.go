@@ -41,8 +41,8 @@ func Md5SumFolder(folder string) (map[string][md5.Size]byte, error) {
 	return results, nil
 }
 
-func GetFilePath(u1 string, content string) string {
-	fileName := u1 + "-" + UpdateFileName(content)
+func GetFilePath(id string, content string) string {
+	fileName := id + "-" + UpdateFileName(content)
 	filePath := "stories/" + fileName + ".feature"
 	return filePath
 }
@@ -97,4 +97,3 @@ func SaveStoryToFile(file *os.File, story *StoryModel) {
 		return
 	}
 }
-

@@ -7,3 +7,8 @@ func GenerateId() string {
 	return str
 }
 
+func GetIdLength() int {
+	str, _ := shortid.Generate()
+	return len(str)
+}
+

@@ -34,9 +34,7 @@ func SyncStory() {
 }
 
 func ListStory() []StoryModel {
-	stories := []StoryModel{}
-
-	return stories
+	return GetFeaturesByPath()
 }
 
 func CreateStory(content string) {
@@ -55,6 +53,7 @@ func CreateStory(content string) {
 
 	story.Hash = string(hashValue[:])
 	SaveStoryToFile(file, story)
+	defer file.Close()
 }
 
 func PickStory(id string, userName string) {
