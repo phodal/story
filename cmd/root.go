@@ -28,29 +28,6 @@ var (
 		},
 		Run: func(cmd *cobra.Command, args []string) {
 			userName := viper.GetString("user")
-			_ = os.MkdirAll("stories", os.ModePerm)
-
-			create := cmd.Flag("create").Value.String()
-
-			if create != "" {
-				CreateStory(create)
-				return
-			}
-
-			list := cmd.Flag("list").Value.String()
-			if list != "" {
-				stories := ListStory()
-
-				table := tablewriter.NewWriter(os.Stdout)
-				table.SetRowLine(true)
-				table.SetHeader([]string{"Id", "Title", "Date", "Status", "Author"})
-
-				for _, v := range stories {
-					str := []string{v.Id, v.Title, v.StartDate, v.Status, v.Author}
-					table.Append(str)
-				}
-				table.Render()
-			}
 
 			pick := cmd.Flag("pick").Value.String()
 			if pick != "" {
@@ -61,15 +38,49 @@ var (
 			if pick != "" && status != "" {
 				ChangeStoryStatus(pick, status)
 			}
+		},
+	}
 
-			sync := cmd.Flag("sync").Value.String()
-			if sync != "" {
-				SyncStory()
+	createCmd = &cobra.Command{
+		Use:   "create",
+		Short: "create show",
+		Run: func(cmd *cobra.Command, args []string) {
+			_ = os.MkdirAll("stories", os.ModePerm)
+
+			create := cmd.Flag("create").Value.String()
+			if create != "" {
+				CreateStory(create)
+				return
 			}
 		},
 	}
-)
 
+	syncCmd = &cobra.Command{
+		Use:   "sync",
+		Short: "sync the stories",
+		Run: func(cmd *cobra.Command, args []string) {
+			SyncStory()
+		},
+	}
+
+	showCmd = &cobra.Command{
+		Use:   "list",
+		Short: "list the stories",
+		Run: func(cmd *cobra.Command, args []string) {
+			stories := ListStory()
+
+			table := tablewriter.NewWriter(os.Stdout)
+			table.SetRowLine(true)
+			table.SetHeader([]string{"Id", "Title", "Date", "Status", "Author"})
+
+			for _, v := range stories {
+				str := []string{v.Id, v.Title, v.StartDate, v.Status, v.Author}
+				table.Append(str)
+			}
+			table.Render()
+		},
+	}
+)
 
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
@@ -79,16 +90,14 @@ func Execute() {
 }
 
 func init() {
+	rootCmd.AddCommand(showCmd)
+	rootCmd.AddCommand(syncCmd)
+	rootCmd.AddCommand(createCmd)
+
 	cobra.OnInitialize(initConfig)
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.cobra.yaml)")
-	rootCmd.PersistentFlags().StringP("create", "c", "", "create a story")
-	rootCmd.PersistentFlags().StringP("list", "l", "", "list a story")
-	rootCmd.PersistentFlags().StringP("pick", "p", "", "pick a story")
-	rootCmd.PersistentFlags().StringP("status", "s", "", "change status of story")
-	rootCmd.PersistentFlags().StringP("journal", "j", "", "show user journal")
 	rootCmd.PersistentFlags().StringP("user", "u", "", "set author")
-	rootCmd.PersistentFlags().StringP("sync", "y", "", "sync story")
 
 	viper.BindPFlag("user", rootCmd.PersistentFlags().Lookup("user"))
 }
