@@ -36,9 +36,9 @@ type StoryModel struct {
 var storyTemplate = `# id: {{.Id}}
 # startDate: {{.StartDate}}
 # endDate: {{.EndDate}}
-# priority: 1
-# status:
-# authors: {{.Author}}
+# priority: {{.Priority}}
+# status: {{.Status}}
+# author: {{.Author}}
 # language: zh-CN
 @math
 功能:{{.Title}}
@@ -51,7 +51,6 @@ var storyTemplate = `# id: {{.Id}}
     当: 我blbla
     并且: 这很不错
     那么: 就好了
-
 `
 
 func SyncStory() {
@@ -119,7 +118,23 @@ func buildStoryId() string {
 }
 
 func PickStory(id string, userName string) {
+	var story StoryModel
 
+	fileName := getFeatureFileNameById(id)
+	if fileName == "" {
+		log.Fatal("error id, %s", id)
+	}
+
+	filePath := "stories/" + fileName
+	story = parseFeature(filePath)
+	story.Author = userName
+
+	file, e := os.OpenFile(filePath, os.O_WRONLY, os.ModeAppend)
+	if e != nil {
+		log.Fatal("open file error %s:", e)
+		return
+	}
+	saveStory(file, &story)
 }
 
 func ChangeStoryStatus(id string, status string) {
@@ -133,9 +148,7 @@ func ChangeStoryStatus(id string, status string) {
 	filePath := "stories/" + fileName
 	story = parseFeature(filePath)
 	story.Status = status
-	if status == "done" {
-		story.EndDate = getNow()
-	}
+	story.EndDate = getNow()
 
 	file, e := os.OpenFile(filePath, os.O_WRONLY, os.ModeAppend)
 	if e != nil {
@@ -174,13 +187,9 @@ func parseFeature(path string) StoryModel {
 		log.Fatal(err)
 	}
 
-	fmt.Println(string(jsonStr[:]))
-	fmt.Println(results["startDate"])
-	fmt.Println(results["endDate"])
-	fmt.Println("....")
+	storyModel.StartDate = results["startDate"]
+	storyModel.EndDate = results["endDate"]
 
 	_ = json.Unmarshal(jsonStr, &storyModel)
-	fmt.Println(storyModel.StartDate, storyModel.EndDate)
-	fmt.Println("--------")
 	return storyModel
 }
