@@ -1,7 +1,7 @@
 package parser
 
 import (
-	. "github.com/phodal/story/languages/feature"
+	. "story/languages/feature"
 	"github.com/antlr/antlr4/runtime/Go/antlr"
 )
 

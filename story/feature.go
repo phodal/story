@@ -2,10 +2,10 @@ package story
 
 import (
 	"encoding/json"
-	. "github.com/phodal/story/parser"
 	"io/ioutil"
 	"log"
 	"os"
+	. "story/parser"
 	"strings"
 )
 

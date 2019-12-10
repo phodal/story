@@ -1,4 +1,4 @@
-module github.com/phodal/story
+module story
 
 go 1.13
 

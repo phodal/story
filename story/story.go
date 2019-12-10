@@ -1,9 +1,9 @@
 package story
 
 import (
-	. "github.com/phodal/story/parser"
 	"log"
 	"os"
+	. "story/parser"
 	"time"
 )
 

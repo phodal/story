@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/phodal/story/cmd"
+	"story/cmd"
 )
 
 func main() {
