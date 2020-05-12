@@ -1,6 +1,6 @@
-# story
+# Story
 
-Kanban as code in projects.
+> Story is a requirements as code practises tools.
 
 
 ```
@@ -67,10 +67,9 @@ story -p CYJlzObWR -u phodal -s done
 ```
 
 
-
 License
 ---
 
 [![Phodal's Idea](http://brand.phodal.com/shields/idea-small.svg)](http://ideas.phodal.com/)
 
-@ 2019 A [Phodal Huang](https://www.phodal.com)'s [Idea](http://github.com/phodal/ideas).  This code is distributed under the MIT license. See `LICENSE` in this directory.
+@ 2019~2020 A [Phodal Huang](https://www.phodal.com)'s [Idea](http://github.com/phodal/ideas).  This code is distributed under the MIT license. See `LICENSE` in this directory.
